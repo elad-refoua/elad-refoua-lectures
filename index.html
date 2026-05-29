@@ -48,6 +48,44 @@
     @media (min-width: 720px) { .wrap { padding: 0 40px; } }
     @media (min-width: 1000px) { .wrap { padding: 0 56px; } }
 
+    /* ============ Top contact bar ============ */
+    .topbar {
+      padding: 18px 0 16px;
+      border-bottom: 1px solid var(--rule-soft);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 10px 22px;
+      font-family: 'Heebo', sans-serif;
+      font-size: 12.5px;
+      letter-spacing: 0.4px;
+      color: var(--ink-mute);
+    }
+    @media (min-width: 720px) { .topbar { font-size: 13px; } }
+    .topbar-label {
+      font-size: 11px;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .topbar-link {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule-soft);
+      padding-bottom: 1px;
+      font-weight: 500;
+      transition: color .15s ease, border-color .15s ease;
+    }
+    .topbar-link:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+    .topbar-sep {
+      color: var(--rule-soft);
+      font-weight: 400;
+    }
+
     /* ============ Masthead / Hero ============ */
     .mast {
       padding: 64px 0 56px;
@@ -315,27 +353,35 @@
       margin-top: 56px;
     }
     @media (min-width: 720px) { .contact { padding: 84px 0 80px; } }
+    @media (min-width: 880px) {
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.05fr;
+        gap: 56px;
+        align-items: start;
+      }
+    }
     .contact-lead {
       font-family: 'Frank Ruhl Libre', serif;
       font-size: clamp(24px, 3.8vw, 38px);
       line-height: 1.25;
       letter-spacing: -0.4px;
-      max-width: 720px;
-      margin: 0 0 32px;
+      margin: 0 0 28px;
       color: var(--ink);
       font-weight: 500;
     }
     .contact-lead .accent { color: var(--accent); }
-    .contact-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 24px;
-      align-items: baseline;
-      padding-top: 24px;
+    .contact-meta {
+      padding-top: 22px;
       border-top: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
     }
-    @media (min-width: 600px) { .contact-row { gap: 36px; } }
-    .contact-item { display: block; text-decoration: none; }
+    .contact-item {
+      display: block;
+      text-decoration: none;
+    }
     .contact-label {
       font-size: 11px;
       letter-spacing: 2px;
@@ -343,10 +389,11 @@
       color: var(--ink-mute);
       font-weight: 600;
       margin-bottom: 4px;
+      font-family: 'Heebo', sans-serif;
     }
     .contact-val {
       font-family: 'Frank Ruhl Libre', serif;
-      font-size: clamp(17px, 2.2vw, 22px);
+      font-size: clamp(17px, 2.1vw, 21px);
       color: var(--ink);
       font-weight: 500;
       border-bottom: 1px solid var(--rule-soft);
@@ -358,6 +405,109 @@
       color: var(--accent);
       border-bottom-color: var(--accent);
     }
+
+    /* ============ Contact form ============ */
+    .contact-form {
+      background: transparent;
+      margin-top: 36px;
+      padding-top: 22px;
+      border-top: 1px solid var(--rule);
+    }
+    @media (min-width: 880px) { .contact-form { margin-top: 0; padding-top: 0; border-top: none; } }
+    .form-kicker {
+      font-size: 11px;
+      letter-spacing: 2.4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 18px;
+      font-family: 'Heebo', sans-serif;
+    }
+    .form-field {
+      margin-bottom: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .form-field label {
+      font-family: 'Heebo', sans-serif;
+      font-size: 11px;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      font-weight: 600;
+    }
+    .form-field input,
+    .form-field textarea {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--rule);
+      padding: 8px 0 9px;
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 16.5px;
+      font-weight: 500;
+      color: var(--ink);
+      outline: none;
+      transition: border-color .15s ease;
+      border-radius: 0;
+      -webkit-appearance: none;
+              appearance: none;
+    }
+    .form-field input:focus,
+    .form-field textarea:focus {
+      border-bottom-color: var(--accent);
+    }
+    .form-field textarea {
+      resize: vertical;
+      min-height: 96px;
+      line-height: 1.55;
+      font-family: 'Heebo', sans-serif;
+      font-size: 15.5px;
+      font-weight: 300;
+    }
+    .form-submit {
+      margin-top: 14px;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 10px;
+      background: transparent;
+      border: none;
+      padding: 14px 0 4px;
+      cursor: pointer;
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.2px;
+      border-bottom: 2px solid var(--accent);
+      transition: gap .2s ease, opacity .15s ease;
+    }
+    .form-submit:hover { gap: 14px; opacity: 0.85; }
+    .form-submit::after {
+      content: '\2190';
+      font-family: 'Heebo', sans-serif;
+      font-size: 16px;
+    }
+    .form-note {
+      margin-top: 22px;
+      font-size: 12px;
+      color: var(--ink-mute);
+      font-weight: 300;
+      line-height: 1.55;
+    }
+    .form-success {
+      display: none;
+      margin-top: 18px;
+      padding: 14px 16px;
+      border-right: 3px solid var(--accent);
+      background: rgba(139, 58, 26, 0.06);
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 16.5px;
+      color: var(--ink);
+      font-weight: 500;
+    }
+    .form-success.visible { display: block; }
 
     /* ============ Talks (videos) ============ */
     .talks {
@@ -491,6 +641,14 @@
 
   <div class="wrap">
 
+    <!-- ============ TOP CONTACT BAR ============ -->
+    <div class="topbar">
+      <span class="topbar-label">לתיאום הרצאות</span>
+      <a class="topbar-link" href="mailto:eladrefoua@gmail.com">eladrefoua@gmail.com</a>
+      <span class="topbar-sep">&middot;</span>
+      <a class="topbar-link" href="tel:+972525373331">052-537-3331</a>
+    </div>
+
     <!-- ============ MASTHEAD ============ -->
     <header class="mast">
       <h1 class="mast-name">אלעד<br/>רפואה</h1>
@@ -511,7 +669,7 @@
           דוקטורנט לפסיכולוגיה ופסיכולוג קליני בהתמחות, עוסק בנקודת המפגש בין רגש, יחסים בינאישיים וטכנולוגיה.
         </p>
         <p class="about-text">
-          מנהל המעבדה לרגש ויחסים בינאישיים (ARLAB) באוניברסיטת בר-אילן, בהנחיית פרופ' אשכול רפאלי, ופסיכולוג בהתמחות קלינית במרכז הרפואי איכילוב. חבר במכון המחקר והפיתוח של <em>השלישי המלאכותי</em>. עוסק בחיבור בין קליניקה, מחקר וטכנולוגיה. חתן פרס נשיא המדינה למצוינות מדעית וחדשנות (2025) וקצין אמ"ן במיל'. פרסם מאמרים ב-<em>Nature</em>, ב-<em>JMIR Mental Health</em>, ב-<em>Frontiers in Digital Health</em> ובכתבי עת נוספים, והעביר עשרות הרצאות וסדנאות באוניברסיטאות, בבתי חולים ובמכוני מחקר.
+          מנהל המעבדה לרגש ויחסים בינאישיים (ARLAB) באוניברסיטת בר-אילן, בהנחיית פרופ' אשכול רפאלי, ופסיכולוג בהתמחות קלינית. חבר במכון המחקר והפיתוח של <em>השלישי המלאכותי</em>. עוסק בחיבור בין קליניקה, מחקר וטכנולוגיה. חתן פרס נשיא המדינה למצוינות מדעית וחדשנות (2025) וקצין אמ"ן במיל'. העביר עשרות הרצאות וסדנאות באוניברסיטאות, בבתי חולים ובמכוני מחקר.
         </p>
       </div>
     </section>
@@ -535,7 +693,7 @@
 
         <div class="lec-main">
           <p class="lec-desc">
-            בינה מלאכותית כבר נמצאת בעבודה הקלינית. השאלה היא איך עובדים איתה בעמדה אחראית &mdash; לא מוקסמים ולא מתנגדים. ההרצאה מציעה מפה מסודרת של רמות השילוב של AI בעולם הטיפול, מאימון מטפלים ועד תמיכה במטופל, ומסמנת את הגבול: היכן AI יכול לעזור, והיכן הקלינאי האנושי נשאר ייחודי. הסדנה מוסיפה בנייה מעשית של סימולציות אימון, היכרות עם כלים קליניים פעילים, ועקרונות לעיצוב כלים בטוחים ואתיים.
+            בינה מלאכותית כבר נמצאת בעבודה הקלינית. השאלה היא איך עובדים איתה בעמדה אחראית. ההרצאה מציעה מפה מסודרת של רמות השילוב של AI בעולם הטיפול, מאימון מטפלים ועד תמיכה במטופל, ומסמנת את הגבול: היכן AI יכול לעזור, והיכן הקלינאי האנושי נשאר ייחודי. הסדנה מוסיפה בנייה מעשית של סימולציות אימון, היכרות עם כלים קליניים פעילים, ועקרונות לעיצוב כלים בטוחים ואתיים.
           </p>
           <ul class="lec-formats">
             <li class="lec-fmt">
@@ -594,19 +752,63 @@
     </section>
 
     <!-- ============ CONTACT ============ -->
-    <section class="contact reveal">
-      <p class="contact-lead">
-        כל הצעה <span class="accent">מותאמת לקהל הספציפי</span>, לזמן הקיים ולמטרות של המפגש. נשמח לשמוע על הפורום שלכם.
-      </p>
-      <div class="contact-row">
-        <a class="contact-item" href="mailto:eladrefoua@gmail.com">
-          <div class="contact-label">דוא"ל</div>
-          <span class="contact-val">eladrefoua@gmail.com</span>
-        </a>
-        <a class="contact-item" href="tel:+972525373331">
-          <div class="contact-label">טלפון</div>
-          <span class="contact-val">052-537-3331</span>
-        </a>
+    <section class="contact reveal" id="contact">
+      <div class="contact-grid">
+        <div class="contact-intro">
+          <p class="contact-lead">
+            כל הצעה <span class="accent">מותאמת לקהל הספציפי</span>, לזמן הקיים ולמטרות של המפגש. נשמח לשמוע על הפורום שלכם.
+          </p>
+          <div class="contact-meta">
+            <a class="contact-item" href="mailto:eladrefoua@gmail.com">
+              <div class="contact-label">דוא"ל</div>
+              <span class="contact-val">eladrefoua@gmail.com</span>
+            </a>
+            <a class="contact-item" href="tel:+972525373331">
+              <div class="contact-label">טלפון</div>
+              <span class="contact-val">052-537-3331</span>
+            </a>
+          </div>
+        </div>
+
+        <form class="contact-form" action="https://formsubmit.co/eladrefoua@gmail.com" method="POST">
+          <div class="form-kicker">פנייה ישירה</div>
+
+          <input type="hidden" name="_subject" value="פנייה חדשה מאתר ההרצאות">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_next" value="https://elad-refoua.github.io/elad-refoua-lectures/?sent=1#contact">
+          <input type="text" name="_honey" style="display:none">
+
+          <div class="form-field">
+            <label for="cf-name">שם מלא</label>
+            <input id="cf-name" type="text" name="שם" required autocomplete="name">
+          </div>
+
+          <div class="form-field">
+            <label for="cf-email">דוא"ל</label>
+            <input id="cf-email" type="email" name="דוא״ל" required autocomplete="email">
+          </div>
+
+          <div class="form-field">
+            <label for="cf-org">ארגון / מסגרת</label>
+            <input id="cf-org" type="text" name="ארגון" autocomplete="organization">
+          </div>
+
+          <div class="form-field">
+            <label for="cf-msg">כמה מילים על הפורום, הקהל וההיקף</label>
+            <textarea id="cf-msg" name="הודעה" rows="4" required></textarea>
+          </div>
+
+          <button type="submit" class="form-submit">שליחה</button>
+
+          <p class="form-note">
+            הפנייה תישלח ישירות לדוא"ל של אלעד. נחזור אליכם בהקדם.
+          </p>
+
+          <div class="form-success" id="cf-success">
+            תודה &mdash; הפנייה התקבלה. נחזור אליכם בהקדם.
+          </div>
+        </form>
       </div>
     </section>
 
@@ -659,6 +861,14 @@
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    if (new URLSearchParams(location.search).get('sent') === '1') {
+      const ok = document.getElementById('cf-success');
+      if (ok) {
+        ok.classList.add('visible');
+        ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
   </script>
 </body>
 </html>
