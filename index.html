@@ -8,7 +8,7 @@
   <meta name="description" content="אלעד רפואה — דוקטורנט באוניברסיטת בר-אילן, מנהל המעבדה לרגש ויחסים בינאישיים, חתן פרס נשיא המדינה למצוינות מדעית וחדשנות. מרצה על בינה מלאכותית בעולם הקליני והמחקרי." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Hebrew:wght@400;500;700;900&family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --paper: #f4efe6;
@@ -27,7 +27,7 @@
       margin: 0;
       background: var(--paper);
       color: var(--ink);
-      font-family: 'Heebo', system-ui, sans-serif;
+      font-family: 'Assistant', system-ui, sans-serif;
       font-size: 16px;
       line-height: 1.7;
       font-weight: 300;
@@ -38,7 +38,7 @@
     @media (min-width: 720px) { body { font-size: 17px; } }
     img { max-width: 100%; height: auto; display: block; }
     a { color: inherit; }
-    .serif { font-family: 'Frank Ruhl Libre', Georgia, serif; }
+    .serif { font-family: 'Noto Serif Hebrew', Georgia, serif; }
 
     .wrap {
       max-width: 1080px;
@@ -48,42 +48,120 @@
     @media (min-width: 720px) { .wrap { padding: 0 40px; } }
     @media (min-width: 1000px) { .wrap { padding: 0 56px; } }
 
-    /* ============ Top contact bar ============ */
-    .topbar {
-      padding: 18px 0 16px;
+    /* ============ Sticky nav bar ============ */
+    html { scroll-padding-top: 88px; }
+    @media (min-width: 720px) { html { scroll-padding-top: 96px; } }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(244, 239, 230, 0.86);
+      -webkit-backdrop-filter: saturate(140%) blur(14px);
+              backdrop-filter: saturate(140%) blur(14px);
       border-bottom: 1px solid var(--rule-soft);
-      display: flex;
-      flex-wrap: wrap;
-      align-items: baseline;
-      gap: 10px 22px;
-      font-family: 'Heebo', sans-serif;
-      font-size: 12.5px;
-      letter-spacing: 0.4px;
-      color: var(--ink-mute);
+      transition: box-shadow .25s ease;
     }
-    @media (min-width: 720px) { .topbar { font-size: 13px; } }
-    .topbar-label {
-      font-size: 11px;
-      letter-spacing: 2.2px;
-      text-transform: uppercase;
-      color: var(--accent);
-      font-weight: 600;
+    .navbar.scrolled {
+      box-shadow: 0 8px 24px -16px rgba(20,17,13,0.18);
     }
-    .topbar-link {
+    .navbar-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 14px 22px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      gap: 14px;
+    }
+    @media (min-width: 720px) {
+      .navbar-inner { padding: 16px 40px; grid-template-columns: auto 1fr auto; gap: 28px; }
+    }
+    @media (min-width: 1000px) { .navbar-inner { padding: 18px 56px; } }
+
+    .nav-brand {
+      font-family: 'Noto Serif Hebrew', Georgia, serif;
+      font-weight: 700;
+      font-size: 17px;
       color: var(--ink);
       text-decoration: none;
-      border-bottom: 1px solid var(--rule-soft);
-      padding-bottom: 1px;
-      font-weight: 500;
-      transition: color .15s ease, border-color .15s ease;
+      letter-spacing: -0.2px;
+      white-space: nowrap;
+      transition: color .15s ease;
     }
-    .topbar-link:hover {
+    .nav-brand:hover { color: var(--accent); }
+    .nav-brand-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      margin-inline-start: 8px;
+      vertical-align: middle;
+    }
+
+    .nav-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      mask-image: linear-gradient(to left, transparent 0%, #000 24px, #000 calc(100% - 24px), transparent 100%);
+      -webkit-mask-image: linear-gradient(to left, transparent 0%, #000 24px, #000 calc(100% - 24px), transparent 100%);
+    }
+    .nav-links::-webkit-scrollbar { display: none; }
+    @media (min-width: 720px) {
+      .nav-links {
+        justify-content: center;
+        gap: 24px;
+        overflow: visible;
+        mask-image: none;
+        -webkit-mask-image: none;
+      }
+    }
+    .nav-links a {
+      font-family: 'Assistant', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      color: var(--ink-soft);
+      text-decoration: none;
+      padding: 6px 2px;
+      border-bottom: 1.5px solid transparent;
+      white-space: nowrap;
+      transition: color .18s ease, border-color .18s ease;
+    }
+    @media (min-width: 720px) { .nav-links a { font-size: 13.5px; } }
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+    .nav-links a.active {
       color: var(--accent);
       border-bottom-color: var(--accent);
     }
-    .topbar-sep {
-      color: var(--rule-soft);
-      font-weight: 400;
+
+    .nav-cta {
+      display: none;
+      font-family: 'Assistant', sans-serif;
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+      color: var(--ink);
+      text-decoration: none;
+      padding: 8px 16px;
+      border: 1px solid var(--rule-soft);
+      border-radius: 999px;
+      transition: border-color .15s ease, color .15s ease, background .15s ease;
+      white-space: nowrap;
+    }
+    @media (min-width: 720px) { .nav-cta { display: inline-flex; align-items: center; gap: 6px; } }
+    .nav-cta:hover {
+      color: var(--paper);
+      background: var(--accent);
+      border-color: var(--accent);
     }
 
     /* ============ Masthead / Hero — editorial magazine spread ============ */
@@ -193,7 +271,7 @@
     }
 
     .mast-issue-mark {
-      font-family: 'Heebo', sans-serif;
+      font-family: 'Assistant', sans-serif;
       font-size: 10.5px;
       letter-spacing: 3.2px;
       text-transform: uppercase;
@@ -216,7 +294,7 @@
     @media (min-width: 720px) { .mast-issue-mark { margin-bottom: 22px; } }
 
     .mast-name {
-      font-family: 'Frank Ruhl Libre', Georgia, serif;
+      font-family: 'Noto Serif Hebrew', Georgia, serif;
       font-weight: 900;
       font-size: clamp(54px, 13.5vw, 140px);
       line-height: 0.9;
@@ -336,7 +414,7 @@
       font-weight: 600;
     }
     .about-lead {
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Noto Serif Hebrew', serif;
       font-size: clamp(20px, 2.6vw, 28px);
       line-height: 1.42;
       color: var(--ink);
@@ -370,7 +448,7 @@
     }
     @media (min-width: 720px) { .section-head-rule { gap: 18px; margin-bottom: 36px; } }
     .section-num {
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Noto Serif Hebrew', serif;
       font-size: 12px;
       letter-spacing: 2.2px;
       color: var(--accent);
@@ -380,7 +458,7 @@
     }
     @media (min-width: 720px) { .section-num { font-size: 13px; letter-spacing: 2.4px; } }
     .section-name {
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Noto Serif Hebrew', serif;
       font-size: clamp(24px, 4.5vw, 40px);
       font-weight: 700;
       margin: 0;
@@ -406,7 +484,7 @@
     }
     .lecture:last-child { border-bottom: none; }
     .lec-index {
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Noto Serif Hebrew', serif;
       font-size: clamp(64px, 14vw, 120px);
       font-weight: 900;
       line-height: 1;
@@ -424,7 +502,7 @@
       font-weight: 600;
     }
     .lec-side h3 {
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Noto Serif Hebrew', serif;
       font-size: clamp(22px, 3.4vw, 32px);
       font-weight: 700;
       margin: 8px 0 0;
@@ -461,14 +539,14 @@
     }
     .lec-fmt:last-child { border-bottom: none; }
     .lec-fmt-name {
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Noto Serif Hebrew', serif;
       font-weight: 700;
       font-size: 16px;
       color: var(--ink);
     }
     .lec-fmt-name small {
       display: block;
-      font-family: 'Heebo', sans-serif;
+      font-family: 'Assistant', sans-serif;
       font-size: 10.5px;
       letter-spacing: 2px;
       text-transform: uppercase;
@@ -538,7 +616,7 @@
       }
     }
     .contact-lead {
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Noto Serif Hebrew', serif;
       font-size: clamp(24px, 3.8vw, 38px);
       line-height: 1.25;
       letter-spacing: -0.4px;
@@ -565,10 +643,10 @@
       color: var(--ink-mute);
       font-weight: 600;
       margin-bottom: 4px;
-      font-family: 'Heebo', sans-serif;
+      font-family: 'Assistant', sans-serif;
     }
     .contact-val {
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Noto Serif Hebrew', serif;
       font-size: clamp(17px, 2.1vw, 21px);
       color: var(--ink);
       font-weight: 500;
@@ -597,7 +675,7 @@
       color: var(--accent);
       font-weight: 600;
       margin-bottom: 18px;
-      font-family: 'Heebo', sans-serif;
+      font-family: 'Assistant', sans-serif;
     }
     .form-field {
       margin-bottom: 18px;
@@ -606,7 +684,7 @@
       gap: 6px;
     }
     .form-field label {
-      font-family: 'Heebo', sans-serif;
+      font-family: 'Assistant', sans-serif;
       font-size: 11px;
       letter-spacing: 1.8px;
       text-transform: uppercase;
@@ -620,7 +698,7 @@
       border: none;
       border-bottom: 1px solid var(--rule);
       padding: 8px 0 9px;
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Noto Serif Hebrew', serif;
       font-size: 16.5px;
       font-weight: 500;
       color: var(--ink);
@@ -638,7 +716,7 @@
       resize: vertical;
       min-height: 96px;
       line-height: 1.55;
-      font-family: 'Heebo', sans-serif;
+      font-family: 'Assistant', sans-serif;
       font-size: 15.5px;
       font-weight: 300;
     }
@@ -651,7 +729,7 @@
       border: none;
       padding: 12px 0 4px;
       cursor: pointer;
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Noto Serif Hebrew', serif;
       font-size: 18px;
       font-weight: 700;
       color: var(--accent);
@@ -662,7 +740,7 @@
     .form-submit:hover { gap: 14px; opacity: 0.85; }
     .form-submit::after {
       content: '\2190';
-      font-family: 'Heebo', sans-serif;
+      font-family: 'Assistant', sans-serif;
       font-size: 16px;
     }
     .form-note {
@@ -707,7 +785,7 @@
       margin-bottom: 10px;
     }
     .picker-title {
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Noto Serif Hebrew', serif;
       font-size: clamp(20px, 2.4vw, 26px);
       font-weight: 700;
       margin: 0 0 22px;
@@ -739,7 +817,7 @@
     }
     .picker-btn:hover { padding-right: 8px; }
     .picker-btn-mark {
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Noto Serif Hebrew', serif;
       font-size: 13px;
       letter-spacing: 1.5px;
       color: var(--accent);
@@ -750,14 +828,14 @@
     }
     .picker-btn-body { min-width: 0; flex-grow: 1; }
     .picker-btn-name {
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Noto Serif Hebrew', serif;
       font-size: 17px;
       font-weight: 700;
       color: var(--ink);
       margin: 0 0 2px;
     }
     .picker-btn-detail {
-      font-family: 'Heebo', sans-serif;
+      font-family: 'Assistant', sans-serif;
       font-size: 12.5px;
       color: var(--ink-mute);
       font-weight: 300;
@@ -782,7 +860,7 @@
       padding: 14px 16px;
       border-right: 3px solid var(--accent);
       background: rgba(139, 58, 26, 0.06);
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Noto Serif Hebrew', serif;
       font-size: 16.5px;
       color: var(--ink);
       font-weight: 500;
@@ -804,7 +882,7 @@
       margin-bottom: 8px;
     }
     .talks-title {
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Noto Serif Hebrew', serif;
       font-size: clamp(22px, 3.2vw, 28px);
       font-weight: 700;
       margin: 0;
@@ -831,7 +909,7 @@
     @media (min-width: 720px) { .talk a { gap: 24px; } }
     .talk a:hover { padding-right: 8px; }
     .talk-marker {
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Noto Serif Hebrew', serif;
       font-size: 13px;
       letter-spacing: 1.4px;
       color: var(--accent);
@@ -841,7 +919,7 @@
     }
     .talk-body { min-width: 0; }
     .talk-title {
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Noto Serif Hebrew', serif;
       font-size: clamp(17px, 2.4vw, 24px);
       font-weight: 700;
       color: var(--ink);
@@ -919,15 +997,22 @@
 </head>
 <body>
 
-  <div class="wrap">
-
-    <!-- ============ TOP CONTACT BAR ============ -->
-    <div class="topbar">
-      <span class="topbar-label">לתיאום הרצאות</span>
-      <a class="topbar-link" href="mailto:eladrefoua@gmail.com">eladrefoua@gmail.com</a>
-      <span class="topbar-sep">&middot;</span>
-      <a class="topbar-link" href="tel:+972525373331">052-537-3331</a>
+  <!-- ============ STICKY NAV ============ -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a class="nav-brand" href="#top">אלעד רפואה<span class="nav-brand-dot"></span></a>
+      <ul class="nav-links">
+        <li><a href="#about">אודות</a></li>
+        <li><a href="#lectures">הרצאות</a></li>
+        <li><a href="#venues">מקומות</a></li>
+        <li><a href="#talks">צפייה</a></li>
+        <li><a href="#contact">יצירת קשר</a></li>
+      </ul>
+      <a class="nav-cta" href="#contact">לתיאום הרצאה</a>
     </div>
+  </nav>
+
+  <div class="wrap" id="top">
 
     <!-- ============ MASTHEAD ============ -->
     <header class="mast">
@@ -944,7 +1029,7 @@
     </header>
 
     <!-- ============ ABOUT ============ -->
-    <section class="about reveal">
+    <section class="about reveal" id="about">
       <div class="about-figure-frame">
         <figure class="about-figure">
           <img src="photo.jpg" alt="אלעד רפואה" loading="lazy">
@@ -963,7 +1048,7 @@
     </section>
 
     <!-- ============ LECTURES ============ -->
-    <div class="section-head">
+    <div class="section-head" id="lectures">
       <div class="section-head-rule">
         <span class="section-num">I. התוכן</span>
         <h2 class="section-name">שתי הרצאות, שני פורמטים</h2>
@@ -1023,7 +1108,7 @@
     </section>
 
     <!-- ============ VENUES (logo strip) ============ -->
-    <section class="venues reveal">
+    <section class="venues reveal" id="venues">
       <ul class="logo-strip">
         <li title="אוניברסיטת בר-אילן"><img src="logos/biu-seal.svg" alt="אוניברסיטת בר-אילן" loading="lazy"></li>
         <li title="אוניברסיטת בן-גוריון בנגב"><img src="logos/bgu.svg" alt="אוניברסיטת בן-גוריון בנגב" loading="lazy"></li>
@@ -1042,7 +1127,7 @@
     </section>
 
     <!-- ============ TALKS (videos) ============ -->
-    <section class="talks reveal">
+    <section class="talks reveal" id="talks">
       <div class="talks-head">
         <div class="talks-kicker">לצפייה ביוטיוב</div>
         <h2 class="talks-title">הרצאות לדוגמא</h2>
@@ -1188,6 +1273,30 @@
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Sticky nav: shadow on scroll + active section highlighting
+    const navbar = document.getElementById('navbar');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const sections = ['about','lectures','venues','talks','contact']
+      .map(id => document.getElementById(id))
+      .filter(Boolean);
+
+    const onScroll = () => {
+      if (window.scrollY > 8) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+
+      const y = window.scrollY + 140;
+      let current = '';
+      for (const s of sections) {
+        if (s.offsetTop <= y) current = s.id;
+      }
+      navLinks.forEach(a => {
+        const isActive = a.getAttribute('href') === '#' + current;
+        a.classList.toggle('active', isActive);
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
 
     const form = document.getElementById('contact-form');
     const picker = document.getElementById('picker');
