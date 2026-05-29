@@ -466,14 +466,20 @@
       font-size: 15.5px;
       font-weight: 300;
     }
-    .form-submit {
+    .form-actions {
       margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px 28px;
+      align-items: baseline;
+    }
+    .form-submit {
       display: inline-flex;
       align-items: baseline;
       gap: 10px;
       background: transparent;
       border: none;
-      padding: 14px 0 4px;
+      padding: 12px 0 4px;
       cursor: pointer;
       font-family: 'Frank Ruhl Libre', serif;
       font-size: 18px;
@@ -488,6 +494,24 @@
       content: '\2190';
       font-family: 'Heebo', sans-serif;
       font-size: 16px;
+    }
+    .form-alt {
+      background: transparent;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      font-family: 'Heebo', sans-serif;
+      font-size: 12.5px;
+      font-weight: 500;
+      letter-spacing: 0.4px;
+      color: var(--ink-mute);
+      border-bottom: 1px solid var(--rule-soft);
+      padding-bottom: 1px;
+      transition: color .15s ease, border-color .15s ease;
+    }
+    .form-alt:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
     }
     .form-note {
       margin-top: 22px;
@@ -793,10 +817,13 @@
             <textarea id="cf-msg" rows="4" required></textarea>
           </div>
 
-          <button type="submit" class="form-submit">שליחה במייל</button>
+          <div class="form-actions">
+            <button type="submit" class="form-submit">שליחה דרך Gmail</button>
+            <button type="button" class="form-alt" id="cf-mailto">או דרך תוכנת המייל</button>
+          </div>
 
           <p class="form-note">
-            לחיצה על "שליחה במייל" תפתח את תוכנת המייל שלכם עם הפנייה מוכנה ותפרט אותה לכתובת eladrefoua@gmail.com.
+            הכפתור פותח חלון Gmail עם הפנייה מוכנה לשליחה. אם אינכם משתמשים ב-Gmail, לחצו על האפשרות המשנית.
           </p>
         </form>
       </div>
@@ -854,25 +881,44 @@
 
     const form = document.getElementById('contact-form');
     if (form) {
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const name = document.getElementById('cf-name').value.trim();
+      const buildMessage = () => {
+        const name  = document.getElementById('cf-name').value.trim();
         const email = document.getElementById('cf-email').value.trim();
-        const org  = document.getElementById('cf-org').value.trim();
-        const msg  = document.getElementById('cf-msg').value.trim();
-        if (!name || !email || !msg) {
-          form.reportValidity();
-          return;
-        }
+        const org   = document.getElementById('cf-org').value.trim();
+        const msg   = document.getElementById('cf-msg').value.trim();
+        if (!name || !email || !msg) { form.reportValidity(); return null; }
         const subject = `\u05E4\u05E0\u05D9\u05D9\u05D4 \u05DC\u05DC\u05D9\u05D5\u05D5\u05D9 \u05E9\u05DC \u05D4\u05E8\u05E6\u05D0\u05D4 \u2014 ${name}`;
         const body =
           `\u05E9\u05DD: ${name}\n` +
           `\u05D3\u05D5\u05D0"\u05DC: ${email}\n` +
           (org ? `\u05D0\u05E8\u05D2\u05D5\u05DF: ${org}\n` : '') +
           `\n${msg}\n`;
-        const href = `mailto:eladrefoua@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        window.location.href = href;
+        return { subject, body };
+      };
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const m = buildMessage();
+        if (!m) return;
+        const url =
+          'https://mail.google.com/mail/?view=cm&fs=1' +
+          '&to=' + encodeURIComponent('eladrefoua@gmail.com') +
+          '&su=' + encodeURIComponent(m.subject) +
+          '&body=' + encodeURIComponent(m.body);
+        window.open(url, '_blank', 'noopener');
       });
+
+      const mailtoBtn = document.getElementById('cf-mailto');
+      if (mailtoBtn) {
+        mailtoBtn.addEventListener('click', () => {
+          const m = buildMessage();
+          if (!m) return;
+          window.location.href =
+            'mailto:eladrefoua@gmail.com' +
+            '?subject=' + encodeURIComponent(m.subject) +
+            '&body=' + encodeURIComponent(m.body);
+        });
+      }
     }
   </script>
 </body>
