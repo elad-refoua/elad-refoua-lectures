@@ -86,63 +86,168 @@
       font-weight: 400;
     }
 
-    /* ============ Masthead / Hero ============ */
+    /* ============ Masthead / Hero — editorial magazine spread ============ */
     .mast {
-      padding: 48px 0 56px;
-      border-bottom: 3px double var(--rule);
       position: relative;
+      padding: 40px 0 56px;
+      border-bottom: 3px double var(--rule);
       display: grid;
       grid-template-columns: 1fr;
+      grid-template-areas:
+        "image"
+        "text";
       gap: 32px;
-      align-items: center;
+      align-items: start;
     }
-    @media (min-width: 720px) { .mast { padding: 72px 0 76px; gap: 40px; } }
-    @media (min-width: 1000px) { .mast { padding: 88px 0 88px; gap: 56px; } }
+    @media (min-width: 720px) {
+      .mast { padding: 72px 0 80px; gap: 44px; }
+    }
     @media (min-width: 880px) {
-      .mast { grid-template-columns: 1.05fr 1fr; }
+      .mast {
+        padding: 88px 0 96px;
+        grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.1fr);
+        grid-template-areas: "text image";
+        column-gap: 52px;
+        align-items: center;
+      }
     }
+    @media (min-width: 1200px) {
+      .mast {
+        grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.15fr);
+        column-gap: 64px;
+      }
+    }
+
+    .mast-text {
+      grid-area: text;
+      min-width: 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Hero image — soft mask fade on all edges + slight outward bleed on desktop */
     .mast-image {
-      order: -1;
+      grid-area: image;
+      position: relative;
+      margin: 0;
       width: 100%;
-      overflow: hidden;
     }
-    @media (min-width: 880px) {
-      .mast-image { order: 0; }
+    @media (min-width: 720px) {
+      .mast-image {
+        width: calc(100% + 40px);
+        margin-inline-end: -40px;
+      }
+    }
+    @media (min-width: 1000px) {
+      .mast-image {
+        width: calc(100% + 56px);
+        margin-inline-end: -56px;
+      }
     }
     .mast-image img {
       width: 100%;
       height: auto;
       display: block;
-      aspect-ratio: 16/10;
+      aspect-ratio: 5/4;
       object-fit: cover;
-      filter: contrast(1.02);
+      object-position: center 35%;
+      filter: contrast(1.05) saturate(1.06) drop-shadow(0 26px 48px rgba(20,17,13,0.12));
+      -webkit-mask-image: radial-gradient(ellipse 95% 92% at 50% 50%,
+                           #000 48%,
+                           rgba(0,0,0,0.85) 68%,
+                           rgba(0,0,0,0.35) 88%,
+                           transparent 100%);
+              mask-image: radial-gradient(ellipse 95% 92% at 50% 50%,
+                           #000 48%,
+                           rgba(0,0,0,0.85) 68%,
+                           rgba(0,0,0,0.35) 88%,
+                           transparent 100%);
+    }
+    @media (min-width: 720px) {
+      .mast-image img { aspect-ratio: 5/4; object-position: center 32%; }
     }
     @media (min-width: 880px) {
-      .mast-image img { aspect-ratio: 4/3; }
+      .mast-image img {
+        aspect-ratio: 4/3;
+        object-position: 30% center;
+      }
     }
-    .mast-text { min-width: 0; }
+
+    /* A delicate ornament behind the image — magazine asymmetry */
+    .mast-image::before {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+      inset: auto -12px -16px auto;
+      width: 64%;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.65;
+      transform-origin: right bottom;
+    }
+    @media (min-width: 720px) {
+      .mast-image::before { inset: auto -24px -22px auto; width: 60%; }
+    }
+    @media (min-width: 880px) {
+      .mast-image::before { display: none; }
+    }
+
+    .mast-issue-mark {
+      font-family: 'Heebo', sans-serif;
+      font-size: 10.5px;
+      letter-spacing: 3.2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .mast-issue-mark::before,
+    .mast-issue-mark::after {
+      content: "";
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.55;
+    }
+    @media (min-width: 720px) { .mast-issue-mark { margin-bottom: 22px; } }
 
     .mast-name {
       font-family: 'Frank Ruhl Libre', Georgia, serif;
       font-weight: 900;
-      font-size: clamp(54px, 13vw, 132px);
-      line-height: 0.92;
+      font-size: clamp(54px, 13.5vw, 140px);
+      line-height: 0.9;
       letter-spacing: -2px;
       margin: 0;
       color: var(--ink);
       word-break: keep-all;
+      position: relative;
     }
-    @media (min-width: 720px) { .mast-name { letter-spacing: -2.5px; } }
+    @media (min-width: 720px) { .mast-name { letter-spacing: -3px; } }
+
+    .mast-name::after {
+      content: "";
+      display: block;
+      width: 56px;
+      height: 2px;
+      background: var(--accent);
+      margin-top: 22px;
+      border-radius: 2px;
+    }
+    @media (min-width: 720px) { .mast-name::after { width: 72px; margin-top: 30px; } }
 
     .mast-tag {
-      max-width: 640px;
-      margin: 28px 0 0;
-      font-size: clamp(16.5px, 2.4vw, 23px);
+      max-width: 580px;
+      margin: 24px 0 0;
+      font-size: clamp(16.5px, 2.4vw, 22px);
       line-height: 1.55;
       color: var(--ink-soft);
       font-weight: 300;
     }
-    @media (min-width: 720px) { .mast-tag { margin-top: 36px; } }
+    @media (min-width: 720px) { .mast-tag { margin-top: 30px; } }
     .mast-tag .accent {
       color: var(--accent);
       font-weight: 500;
@@ -164,18 +269,58 @@
     }
     .about-figure {
       max-width: 220px;
-      margin: 0 auto 28px;
+      margin: 0 auto 32px;
+      position: relative;
+      isolation: isolate;
     }
-    @media (min-width: 720px) { .about-figure { max-width: 260px; } }
+    @media (min-width: 720px) { .about-figure { max-width: 250px; } }
     @media (min-width: 880px) {
-      .about-figure { margin: 0; max-width: none; }
+      .about-figure { margin: 0; max-width: 280px; }
     }
     .about-figure img {
       width: 100%;
       aspect-ratio: 4 / 5;
       object-fit: cover;
-      filter: grayscale(0.18) contrast(1.04);
-      background: var(--paper-deep);
+      object-position: center 20%;
+      filter: grayscale(0.22) contrast(1.06) brightness(1.01)
+              drop-shadow(0 18px 36px rgba(20,17,13,0.10));
+      background: transparent;
+      transition: filter .5s ease;
+      -webkit-mask-image: radial-gradient(ellipse 102% 100% at 50% 45%,
+                           #000 64%,
+                           rgba(0,0,0,0.85) 80%,
+                           rgba(0,0,0,0.35) 94%,
+                           transparent 100%);
+              mask-image: radial-gradient(ellipse 102% 100% at 50% 45%,
+                           #000 64%,
+                           rgba(0,0,0,0.85) 80%,
+                           rgba(0,0,0,0.35) 94%,
+                           transparent 100%);
+    }
+    .about-figure:hover img {
+      filter: grayscale(0) contrast(1.05) brightness(1.02)
+              drop-shadow(0 22px 40px rgba(20,17,13,0.14));
+    }
+    /* Editorial corner accent — terracotta L-mark, top-right (RTL = start) */
+    .about-figure::after {
+      content: "";
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      width: 34px;
+      height: 34px;
+      border-top: 1.5px solid var(--accent);
+      border-right: 1.5px solid var(--accent);
+      pointer-events: none;
+      opacity: 0.85;
+      transition: opacity .3s ease, transform .3s ease;
+    }
+    .about-figure:hover::after {
+      opacity: 1;
+      transform: translate(-2px, 2px);
+    }
+    @media (min-width: 720px) {
+      .about-figure::after { width: 40px; height: 40px; top: -8px; right: -8px; }
     }
     .about-body { min-width: 0; }
     .about-kicker {
@@ -783,6 +928,7 @@
     <!-- ============ MASTHEAD ============ -->
     <header class="mast">
       <div class="mast-text">
+        <div class="mast-issue-mark">הרצאות</div>
         <h1 class="mast-name">אלעד<br/>רפואה</h1>
         <p class="mast-tag">
           מרצה על <span class="accent">בינה מלאכותית</span> בעולם הקליני והמחקרי. שיחה ביקורתית, מבוססת ראיות, על מה שהכלים האלה כן עושים, מה הם לא, ואיך עובדים איתם בלי לאבד את האנושיות.
