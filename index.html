@@ -770,44 +770,34 @@
           </div>
         </div>
 
-        <form class="contact-form" action="https://formsubmit.co/eladrefoua@gmail.com" method="POST">
+        <form class="contact-form" id="contact-form" novalidate>
           <div class="form-kicker">פנייה ישירה</div>
-
-          <input type="hidden" name="_subject" value="פנייה חדשה מאתר ההרצאות">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_next" value="https://elad-refoua.github.io/elad-refoua-lectures/?sent=1#contact">
-          <input type="text" name="_honey" style="display:none">
 
           <div class="form-field">
             <label for="cf-name">שם מלא</label>
-            <input id="cf-name" type="text" name="שם" required autocomplete="name">
+            <input id="cf-name" type="text" required autocomplete="name">
           </div>
 
           <div class="form-field">
             <label for="cf-email">דוא"ל</label>
-            <input id="cf-email" type="email" name="דוא״ל" required autocomplete="email">
+            <input id="cf-email" type="email" required autocomplete="email">
           </div>
 
           <div class="form-field">
             <label for="cf-org">ארגון / מסגרת</label>
-            <input id="cf-org" type="text" name="ארגון" autocomplete="organization">
+            <input id="cf-org" type="text" autocomplete="organization">
           </div>
 
           <div class="form-field">
             <label for="cf-msg">כמה מילים על הפורום, הקהל וההיקף</label>
-            <textarea id="cf-msg" name="הודעה" rows="4" required></textarea>
+            <textarea id="cf-msg" rows="4" required></textarea>
           </div>
 
-          <button type="submit" class="form-submit">שליחה</button>
+          <button type="submit" class="form-submit">שליחה במייל</button>
 
           <p class="form-note">
-            הפנייה תישלח ישירות לדוא"ל של אלעד. נחזור אליכם בהקדם.
+            לחיצה על "שליחה במייל" תפתח את תוכנת המייל שלכם עם הפנייה מוכנה ותפרט אותה לכתובת eladrefoua@gmail.com.
           </p>
-
-          <div class="form-success" id="cf-success">
-            תודה &mdash; הפנייה התקבלה. נחזור אליכם בהקדם.
-          </div>
         </form>
       </div>
     </section>
@@ -862,12 +852,27 @@
     }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-    if (new URLSearchParams(location.search).get('sent') === '1') {
-      const ok = document.getElementById('cf-success');
-      if (ok) {
-        ok.classList.add('visible');
-        ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
+    const form = document.getElementById('contact-form');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('cf-name').value.trim();
+        const email = document.getElementById('cf-email').value.trim();
+        const org  = document.getElementById('cf-org').value.trim();
+        const msg  = document.getElementById('cf-msg').value.trim();
+        if (!name || !email || !msg) {
+          form.reportValidity();
+          return;
+        }
+        const subject = `\u05E4\u05E0\u05D9\u05D9\u05D4 \u05DC\u05DC\u05D9\u05D5\u05D5\u05D9 \u05E9\u05DC \u05D4\u05E8\u05E6\u05D0\u05D4 \u2014 ${name}`;
+        const body =
+          `\u05E9\u05DD: ${name}\n` +
+          `\u05D3\u05D5\u05D0"\u05DC: ${email}\n` +
+          (org ? `\u05D0\u05E8\u05D2\u05D5\u05DF: ${org}\n` : '') +
+          `\n${msg}\n`;
+        const href = `mailto:eladrefoua@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = href;
+      });
     }
   </script>
 </body>
