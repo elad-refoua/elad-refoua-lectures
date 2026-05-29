@@ -466,14 +466,8 @@
       font-size: 15.5px;
       font-weight: 300;
     }
-    .form-actions {
-      margin-top: 14px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px 28px;
-      align-items: baseline;
-    }
     .form-submit {
+      margin-top: 14px;
       display: inline-flex;
       align-items: baseline;
       gap: 10px;
@@ -495,24 +489,6 @@
       font-family: 'Heebo', sans-serif;
       font-size: 16px;
     }
-    .form-alt {
-      background: transparent;
-      border: none;
-      padding: 0;
-      cursor: pointer;
-      font-family: 'Heebo', sans-serif;
-      font-size: 12.5px;
-      font-weight: 500;
-      letter-spacing: 0.4px;
-      color: var(--ink-mute);
-      border-bottom: 1px solid var(--rule-soft);
-      padding-bottom: 1px;
-      transition: color .15s ease, border-color .15s ease;
-    }
-    .form-alt:hover {
-      color: var(--accent);
-      border-bottom-color: var(--accent);
-    }
     .form-note {
       margin-top: 22px;
       font-size: 12px;
@@ -520,6 +496,110 @@
       font-weight: 300;
       line-height: 1.55;
     }
+
+    /* ============ Mail provider picker (modal) ============ */
+    .picker-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 17, 13, 0.55);
+      backdrop-filter: blur(2px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 100;
+      opacity: 0;
+      transition: opacity .2s ease;
+    }
+    .picker-backdrop.visible { display: flex; opacity: 1; }
+    .picker {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      max-width: 460px;
+      width: 100%;
+      padding: 32px 28px 28px;
+      box-shadow: 0 22px 60px rgba(20,17,13,0.25);
+      position: relative;
+    }
+    @media (min-width: 720px) { .picker { padding: 40px 36px 32px; } }
+    .picker-eyebrow {
+      font-size: 11px;
+      letter-spacing: 2.4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .picker-title {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: clamp(20px, 2.4vw, 26px);
+      font-weight: 700;
+      margin: 0 0 22px;
+      color: var(--ink);
+      letter-spacing: -0.3px;
+      line-height: 1.25;
+    }
+    .picker-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      border-top: 1px solid var(--rule);
+    }
+    .picker-item {
+      border-bottom: 1px solid var(--rule-soft);
+    }
+    .picker-btn {
+      width: 100%;
+      text-align: right;
+      background: transparent;
+      border: none;
+      padding: 16px 0;
+      cursor: pointer;
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      font-family: inherit;
+      transition: padding .2s ease;
+    }
+    .picker-btn:hover { padding-right: 8px; }
+    .picker-btn-mark {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      color: var(--accent);
+      font-weight: 700;
+      text-transform: uppercase;
+      flex-shrink: 0;
+      min-width: 26px;
+    }
+    .picker-btn-body { min-width: 0; flex-grow: 1; }
+    .picker-btn-name {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 0 0 2px;
+    }
+    .picker-btn-detail {
+      font-family: 'Heebo', sans-serif;
+      font-size: 12.5px;
+      color: var(--ink-mute);
+      font-weight: 300;
+    }
+    .picker-close {
+      position: absolute;
+      top: 14px;
+      left: 16px;
+      background: transparent;
+      border: none;
+      padding: 6px;
+      cursor: pointer;
+      font-size: 22px;
+      line-height: 1;
+      color: var(--ink-mute);
+      transition: color .15s ease;
+    }
+    .picker-close:hover { color: var(--accent); }
     .form-success {
       display: none;
       margin-top: 18px;
@@ -817,13 +897,10 @@
             <textarea id="cf-msg" rows="4" required></textarea>
           </div>
 
-          <div class="form-actions">
-            <button type="submit" class="form-submit">שליחה דרך Gmail</button>
-            <button type="button" class="form-alt" id="cf-mailto">או דרך תוכנת המייל</button>
-          </div>
+          <button type="submit" class="form-submit">שליחה</button>
 
           <p class="form-note">
-            הכפתור פותח חלון Gmail עם הפנייה מוכנה לשליחה. אם אינכם משתמשים ב-Gmail, לחצו על האפשרות המשנית.
+            בלחיצה תופיע בחירה: Gmail, Outlook, Yahoo, או תוכנת המייל המוגדרת אצלכם.
           </p>
         </form>
       </div>
@@ -860,6 +937,53 @@
       </ul>
     </section>
 
+    <!-- ============ MAIL PROVIDER PICKER ============ -->
+    <div class="picker-backdrop" id="picker" role="dialog" aria-modal="true" aria-labelledby="picker-title">
+      <div class="picker">
+        <button type="button" class="picker-close" id="picker-close" aria-label="\u05E1\u05D2\u05D9\u05E8\u05D4">&times;</button>
+        <div class="picker-eyebrow">בחירת לקוח מייל</div>
+        <h3 class="picker-title" id="picker-title">באיזה מייל תרצו לשלוח?</h3>
+        <ul class="picker-list">
+          <li class="picker-item">
+            <button type="button" class="picker-btn" data-provider="gmail">
+              <span class="picker-btn-mark">01 &mdash;</span>
+              <span class="picker-btn-body">
+                <div class="picker-btn-name">Gmail</div>
+                <div class="picker-btn-detail">פתיחת חלון Gmail בדפדפן עם פרטי הפנייה</div>
+              </span>
+            </button>
+          </li>
+          <li class="picker-item">
+            <button type="button" class="picker-btn" data-provider="outlook">
+              <span class="picker-btn-mark">02 &mdash;</span>
+              <span class="picker-btn-body">
+                <div class="picker-btn-name">Outlook</div>
+                <div class="picker-btn-detail">Outlook.com / Microsoft 365 בדפדפן</div>
+              </span>
+            </button>
+          </li>
+          <li class="picker-item">
+            <button type="button" class="picker-btn" data-provider="yahoo">
+              <span class="picker-btn-mark">03 &mdash;</span>
+              <span class="picker-btn-body">
+                <div class="picker-btn-name">Yahoo Mail</div>
+                <div class="picker-btn-detail">פתיחת Yahoo Mail בדפדפן</div>
+              </span>
+            </button>
+          </li>
+          <li class="picker-item">
+            <button type="button" class="picker-btn" data-provider="default">
+              <span class="picker-btn-mark">04 &mdash;</span>
+              <span class="picker-btn-body">
+                <div class="picker-btn-name">תוכנת המייל שלי</div>
+                <div class="picker-btn-detail">Apple Mail, Outlook למחשב, או ברירת המחדל במכשיר</div>
+              </span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+
     <footer>
       <div>&copy; אלעד רפואה &middot; 2026</div>
       <div class="foot-links">
@@ -880,45 +1004,77 @@
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
     const form = document.getElementById('contact-form');
-    if (form) {
-      const buildMessage = () => {
-        const name  = document.getElementById('cf-name').value.trim();
-        const email = document.getElementById('cf-email').value.trim();
-        const org   = document.getElementById('cf-org').value.trim();
-        const msg   = document.getElementById('cf-msg').value.trim();
-        if (!name || !email || !msg) { form.reportValidity(); return null; }
-        const subject = `\u05E4\u05E0\u05D9\u05D9\u05D4 \u05DC\u05DC\u05D9\u05D5\u05D5\u05D9 \u05E9\u05DC \u05D4\u05E8\u05E6\u05D0\u05D4 \u2014 ${name}`;
-        const body =
-          `\u05E9\u05DD: ${name}\n` +
-          `\u05D3\u05D5\u05D0"\u05DC: ${email}\n` +
-          (org ? `\u05D0\u05E8\u05D2\u05D5\u05DF: ${org}\n` : '') +
-          `\n${msg}\n`;
-        return { subject, body };
-      };
+    const picker = document.getElementById('picker');
+    const TO = 'eladrefoua@gmail.com';
 
+    const buildMessage = () => {
+      const name  = document.getElementById('cf-name').value.trim();
+      const email = document.getElementById('cf-email').value.trim();
+      const org   = document.getElementById('cf-org').value.trim();
+      const msg   = document.getElementById('cf-msg').value.trim();
+      if (!name || !email || !msg) { form.reportValidity(); return null; }
+      const subject = `\u05E4\u05E0\u05D9\u05D9\u05D4 \u05DC\u05DC\u05D9\u05D5\u05D5\u05D9 \u05E9\u05DC \u05D4\u05E8\u05E6\u05D0\u05D4 \u2014 ${name}`;
+      const body =
+        `\u05E9\u05DD: ${name}\n` +
+        `\u05D3\u05D5\u05D0"\u05DC: ${email}\n` +
+        (org ? `\u05D0\u05E8\u05D2\u05D5\u05DF: ${org}\n` : '') +
+        `\n${msg}\n`;
+      return { subject, body };
+    };
+
+    const openPicker = () => { picker.classList.add('visible'); document.body.style.overflow = 'hidden'; };
+    const closePicker = () => { picker.classList.remove('visible'); document.body.style.overflow = ''; };
+
+    const providerUrl = (provider, m) => {
+      const enc = encodeURIComponent;
+      switch (provider) {
+        case 'gmail':
+          return 'https://mail.google.com/mail/?view=cm&fs=1&to=' + enc(TO) +
+                 '&su=' + enc(m.subject) + '&body=' + enc(m.body);
+        case 'outlook':
+          return 'https://outlook.live.com/mail/0/deeplink/compose?to=' + enc(TO) +
+                 '&subject=' + enc(m.subject) + '&body=' + enc(m.body);
+        case 'yahoo':
+          return 'https://compose.mail.yahoo.com/?to=' + enc(TO) +
+                 '&subject=' + enc(m.subject) + '&body=' + enc(m.body);
+        case 'default':
+        default:
+          return 'mailto:' + TO + '?subject=' + enc(m.subject) + '&body=' + enc(m.body);
+      }
+    };
+
+    if (form) {
       form.addEventListener('submit', (e) => {
         e.preventDefault();
         const m = buildMessage();
         if (!m) return;
-        const url =
-          'https://mail.google.com/mail/?view=cm&fs=1' +
-          '&to=' + encodeURIComponent('eladrefoua@gmail.com') +
-          '&su=' + encodeURIComponent(m.subject) +
-          '&body=' + encodeURIComponent(m.body);
-        window.open(url, '_blank', 'noopener');
+        form.dataset.message = JSON.stringify(m);
+        openPicker();
       });
+    }
 
-      const mailtoBtn = document.getElementById('cf-mailto');
-      if (mailtoBtn) {
-        mailtoBtn.addEventListener('click', () => {
-          const m = buildMessage();
-          if (!m) return;
-          window.location.href =
-            'mailto:eladrefoua@gmail.com' +
-            '?subject=' + encodeURIComponent(m.subject) +
-            '&body=' + encodeURIComponent(m.body);
-        });
-      }
+    if (picker) {
+      picker.addEventListener('click', (e) => {
+        const btn = e.target.closest('.picker-btn');
+        if (btn) {
+          const m = JSON.parse(form.dataset.message || '{}');
+          if (!m.subject) return;
+          const url = providerUrl(btn.dataset.provider, m);
+          if (btn.dataset.provider === 'default') {
+            window.location.href = url;
+          } else {
+            window.open(url, '_blank', 'noopener');
+          }
+          closePicker();
+          return;
+        }
+        if (e.target === picker) closePicker();
+      });
+      const closeBtn = document.getElementById('picker-close');
+      if (closeBtn) closeBtn.addEventListener('click', closePicker);
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && picker.classList.contains('visible')) closePicker();
+      });
     }
   </script>
 </body>
