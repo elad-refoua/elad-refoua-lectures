@@ -144,6 +144,16 @@
         margin-inline-end: -56px;
       }
     }
+    .mast-image {
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 24px 48px -16px rgba(20,17,13,0.18),
+                  0 6px 12px -6px rgba(20,17,13,0.08),
+                  inset 0 0 0 1px rgba(255,255,255,0.04);
+    }
+    @media (min-width: 720px) { .mast-image { border-radius: 22px; } }
+    @media (min-width: 1000px) { .mast-image { border-radius: 26px; } }
+
     .mast-image img {
       width: 100%;
       height: auto;
@@ -151,18 +161,10 @@
       aspect-ratio: 5/4;
       object-fit: cover;
       object-position: center 35%;
-      filter: contrast(1.05) saturate(1.06) drop-shadow(0 26px 48px rgba(20,17,13,0.12));
-      -webkit-mask-image: radial-gradient(ellipse 95% 92% at 50% 50%,
-                           #000 48%,
-                           rgba(0,0,0,0.85) 68%,
-                           rgba(0,0,0,0.35) 88%,
-                           transparent 100%);
-              mask-image: radial-gradient(ellipse 95% 92% at 50% 50%,
-                           #000 48%,
-                           rgba(0,0,0,0.85) 68%,
-                           rgba(0,0,0,0.35) 88%,
-                           transparent 100%);
+      filter: contrast(1.05) saturate(1.06);
+      transition: transform .9s ease;
     }
+    .mast-image:hover img { transform: scale(1.015); }
     @media (min-width: 720px) {
       .mast-image img { aspect-ratio: 5/4; object-position: center 32%; }
     }
@@ -173,23 +175,21 @@
       }
     }
 
-    /* A delicate ornament behind the image — magazine asymmetry */
-    .mast-image::before {
+    /* A delicate ornament — magazine asymmetry, small terracotta dash next to image */
+    .mast-image::after {
       content: "";
       position: absolute;
       pointer-events: none;
-      inset: auto -12px -16px auto;
-      width: 64%;
-      height: 1px;
+      bottom: -18px;
+      right: 22px;
+      width: 56px;
+      height: 2px;
       background: var(--accent);
-      opacity: 0.65;
-      transform-origin: right bottom;
-    }
-    @media (min-width: 720px) {
-      .mast-image::before { inset: auto -24px -22px auto; width: 60%; }
+      border-radius: 2px;
+      opacity: 0.75;
     }
     @media (min-width: 880px) {
-      .mast-image::before { display: none; }
+      .mast-image::after { display: none; }
     }
 
     .mast-issue-mark {
@@ -272,55 +272,59 @@
       margin: 0 auto 32px;
       position: relative;
       isolation: isolate;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px -14px rgba(20,17,13,0.20),
+                  0 4px 10px -4px rgba(20,17,13,0.10);
     }
-    @media (min-width: 720px) { .about-figure { max-width: 250px; } }
+    @media (min-width: 720px) { .about-figure { max-width: 250px; border-radius: 18px; } }
     @media (min-width: 880px) {
-      .about-figure { margin: 0; max-width: 280px; }
+      .about-figure { margin: 0; max-width: 280px; border-radius: 20px; }
     }
     .about-figure img {
       width: 100%;
       aspect-ratio: 4 / 5;
       object-fit: cover;
       object-position: center 20%;
-      filter: grayscale(0.22) contrast(1.06) brightness(1.01)
-              drop-shadow(0 18px 36px rgba(20,17,13,0.10));
+      filter: grayscale(0.22) contrast(1.06) brightness(1.01);
       background: transparent;
-      transition: filter .5s ease;
-      -webkit-mask-image: radial-gradient(ellipse 102% 100% at 50% 45%,
-                           #000 64%,
-                           rgba(0,0,0,0.85) 80%,
-                           rgba(0,0,0,0.35) 94%,
-                           transparent 100%);
-              mask-image: radial-gradient(ellipse 102% 100% at 50% 45%,
-                           #000 64%,
-                           rgba(0,0,0,0.85) 80%,
-                           rgba(0,0,0,0.35) 94%,
-                           transparent 100%);
+      transition: filter .6s ease, transform .9s ease;
     }
     .about-figure:hover img {
-      filter: grayscale(0) contrast(1.05) brightness(1.02)
-              drop-shadow(0 22px 40px rgba(20,17,13,0.14));
+      filter: grayscale(0) contrast(1.05) brightness(1.02);
+      transform: scale(1.02);
     }
     /* Editorial corner accent — terracotta L-mark, top-right (RTL = start) */
-    .about-figure::after {
+    .about-figure-frame {
+      position: relative;
+      display: block;
+      margin: 0 auto 32px;
+      max-width: 220px;
+    }
+    @media (min-width: 720px) { .about-figure-frame { max-width: 250px; } }
+    @media (min-width: 880px) {
+      .about-figure-frame { margin: 0; max-width: 280px; }
+    }
+    .about-figure-frame::after {
       content: "";
       position: absolute;
-      top: -6px;
-      right: -6px;
-      width: 34px;
-      height: 34px;
+      top: -8px;
+      right: -8px;
+      width: 36px;
+      height: 36px;
       border-top: 1.5px solid var(--accent);
       border-right: 1.5px solid var(--accent);
+      border-top-right-radius: 6px;
       pointer-events: none;
       opacity: 0.85;
       transition: opacity .3s ease, transform .3s ease;
     }
-    .about-figure:hover::after {
+    .about-figure-frame:hover::after {
       opacity: 1;
-      transform: translate(-2px, 2px);
+      transform: translate(-3px, 3px);
     }
     @media (min-width: 720px) {
-      .about-figure::after { width: 40px; height: 40px; top: -8px; right: -8px; }
+      .about-figure-frame::after { width: 42px; height: 42px; top: -10px; right: -10px; }
     }
     .about-body { min-width: 0; }
     .about-kicker {
@@ -941,9 +945,11 @@
 
     <!-- ============ ABOUT ============ -->
     <section class="about reveal">
-      <figure class="about-figure">
-        <img src="photo.jpg" alt="אלעד רפואה" loading="lazy">
-      </figure>
+      <div class="about-figure-frame">
+        <figure class="about-figure">
+          <img src="photo.jpg" alt="אלעד רפואה" loading="lazy">
+        </figure>
+      </div>
 
       <div class="about-body">
         <div class="about-kicker">קצת עליי</div>
