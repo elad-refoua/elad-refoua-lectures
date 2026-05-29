@@ -10,481 +10,483 @@
   <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #fbf8f2;
-      --card: #ffffff;
-      --ink: #1f2937;
-      --ink-soft: #4b5563;
-      --muted: #6b7280;
-      --line: rgba(15, 23, 42, 0.07);
-      --accent: #4a6f5e;
-      --accent-soft: #eef3ef;
-      --accent-deep: #355245;
-      --gold: #b8893a;
-      --gold-soft: #f5ecd9;
-      --shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px rgba(15, 23, 42, 0.05);
+      --paper: #f4efe6;
+      --paper-deep: #ece5d6;
+      --ink: #14110d;
+      --ink-soft: #3a342c;
+      --ink-mute: #6b6357;
+      --rule: #2c241a;
+      --rule-soft: rgba(20, 17, 13, 0.18);
+      --accent: #8b3a1a;
+      --accent-soft: #b95a36;
     }
     *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      background: var(--bg);
+      background: var(--paper);
       color: var(--ink);
       font-family: 'Heebo', system-ui, sans-serif;
-      font-size: 16px;
-      line-height: 1.65;
+      font-size: 17px;
+      line-height: 1.7;
+      font-weight: 300;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
     a { color: inherit; }
-    .display { font-family: 'Frank Ruhl Libre', Georgia, serif; }
-    .container {
-      max-width: 960px;
+    .serif { font-family: 'Frank Ruhl Libre', Georgia, serif; }
+
+    .wrap {
+      max-width: 1080px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 28px;
     }
-    @media (min-width: 720px) {
-      body { font-size: 17px; }
-      .container { padding: 0 40px; }
-    }
+    @media (min-width: 800px) { .wrap { padding: 0 56px; } }
 
-    /* ============== Hero ============== */
-    .hero {
-      padding: 64px 0 36px;
-      text-align: center;
-    }
-    @media (min-width: 720px) {
-      .hero { padding: 96px 0 56px; }
-    }
-    .hero-eyebrow {
-      display: inline-block;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 1.8px;
-      color: var(--accent);
-      text-transform: uppercase;
-      margin-bottom: 22px;
-    }
-    .hero-name {
-      font-family: 'Frank Ruhl Libre', Georgia, serif;
-      font-weight: 700;
-      font-size: clamp(42px, 7vw, 66px);
-      line-height: 1.05;
-      letter-spacing: -0.5px;
-      margin: 0 0 18px;
-      color: var(--ink);
-    }
-    .hero-tagline {
-      font-size: clamp(17px, 2.2vw, 21px);
-      color: var(--ink-soft);
-      max-width: 540px;
-      margin: 0 auto;
-      font-weight: 300;
-    }
-    .hero-divider {
-      width: 48px;
-      height: 2px;
-      background: var(--accent);
-      margin: 36px auto 0;
-      border-radius: 2px;
-      opacity: 0.55;
-    }
-
-    /* ============== Section base ============== */
-    section { padding: 32px 0; }
-    @media (min-width: 720px) { section { padding: 48px 0; } }
-    .eyebrow {
-      display: inline-block;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      color: var(--accent);
-      text-transform: uppercase;
-      margin-bottom: 14px;
-    }
-    .section-heading {
-      font-family: 'Frank Ruhl Libre', serif;
-      font-size: clamp(28px, 4vw, 36px);
-      font-weight: 700;
-      margin: 0 0 10px;
-      color: var(--ink);
-      letter-spacing: -0.4px;
-    }
-    .section-sub {
-      color: var(--muted);
-      font-size: 15.5px;
-      margin: 0;
-    }
-    .section-intro {
-      text-align: center;
-      margin-bottom: 28px;
-    }
-
-    /* ============== About ============== */
-    .about-card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 32px 28px;
-      box-shadow: var(--shadow);
+    /* ============ Top strip ============ */
+    .top {
+      padding: 22px 0 18px;
       display: flex;
-      flex-direction: column;
-      gap: 22px;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid var(--rule);
+      font-size: 12px;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      color: var(--ink-soft);
     }
-    @media (min-width: 720px) {
-      .about-card { padding: 44px 48px; }
+    .top-mark { font-weight: 700; }
+    .top-meta { font-weight: 400; color: var(--ink-mute); }
+    @media (max-width: 600px) {
+      .top-meta { display: none; }
     }
-    @media (min-width: 880px) {
-      .about-card {
-        flex-direction: row;
-        align-items: flex-start;
-        gap: 40px;
-      }
-    }
-    .about-photo {
-      flex-shrink: 0;
-      width: 140px;
-      height: 140px;
-      margin: 0 auto;
-      border-radius: 50%;
-      overflow: hidden;
-      background: var(--accent-soft);
-      border: 4px solid var(--card);
-      box-shadow: 0 6px 18px rgba(15,23,42,0.10), 0 0 0 1px var(--line);
+
+    /* ============ Masthead / Hero ============ */
+    .mast {
+      padding: 80px 0 64px;
+      border-bottom: 3px double var(--rule);
       position: relative;
     }
-    @media (min-width: 880px) {
-      .about-photo { width: 160px; height: 160px; margin: 0; }
+    @media (min-width: 800px) {
+      .mast { padding: 120px 0 88px; }
     }
-    .about-photo img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
+    .mast-issue {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 26px;
     }
-    .about-photo-fallback {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent-deep);
-      font-family: 'Frank Ruhl Libre', serif;
-      font-size: 60px;
-      font-weight: 700;
-      letter-spacing: -1px;
-    }
-    .about-body { flex-grow: 1; min-width: 0; }
-    .about-title {
-      font-family: 'Frank Ruhl Libre', serif;
-      font-size: 22px;
-      font-weight: 700;
-      margin: 0 0 14px;
+    .mast-name {
+      font-family: 'Frank Ruhl Libre', Georgia, serif;
+      font-weight: 900;
+      font-size: clamp(56px, 11vw, 132px);
+      line-height: 0.92;
+      letter-spacing: -2.5px;
+      margin: 0;
       color: var(--ink);
     }
+    .mast-tag {
+      max-width: 640px;
+      margin: 36px 0 0;
+      font-size: clamp(18px, 2.3vw, 23px);
+      line-height: 1.5;
+      color: var(--ink-soft);
+      font-weight: 300;
+    }
+    .mast-tag .accent {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* ============ Standfirst (about) ============ */
+    .about {
+      padding: 72px 0 80px;
+      border-bottom: 1px solid var(--rule-soft);
+    }
+    @media (min-width: 880px) {
+      .about {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: 56px;
+        align-items: start;
+      }
+    }
+    .about-figure {
+      max-width: 260px;
+      margin: 0 auto 32px;
+    }
+    @media (min-width: 880px) {
+      .about-figure { margin: 0; max-width: none; }
+    }
+    .about-figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      filter: grayscale(0.18) contrast(1.04);
+      background: var(--paper-deep);
+    }
+    .about-caption {
+      font-size: 11px;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px solid var(--rule);
+      font-weight: 500;
+    }
+    .about-body { min-width: 0; }
+    .about-kicker {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+      font-weight: 600;
+    }
+    .about-lead {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: clamp(22px, 2.6vw, 28px);
+      line-height: 1.42;
+      color: var(--ink);
+      font-weight: 500;
+      margin: 0 0 28px;
+      letter-spacing: -0.3px;
+    }
+    .about-lead em { font-style: italic; }
     .about-text {
       font-size: 16.5px;
       line-height: 1.78;
       color: var(--ink-soft);
-      margin: 0;
-    }
-    @media (min-width: 720px) {
-      .about-text { font-size: 17px; }
+      margin: 0 0 28px;
+      font-weight: 300;
     }
     .about-text em { font-style: italic; color: var(--ink); }
-    .about-text strong { color: var(--ink); font-weight: 600; }
-    .about-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 22px;
-      padding-top: 22px;
-      border-top: 1px solid var(--line);
-    }
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 6px 13px;
-      background: var(--gold-soft);
-      color: var(--gold);
-      font-size: 13px;
-      font-weight: 500;
-      border-radius: 999px;
-    }
-    .pill svg { width: 13px; height: 13px; }
-    .pill--green {
-      background: var(--accent-soft);
-      color: var(--accent-deep);
-    }
-    .pill--ink {
-      background: rgba(31,41,55,0.06);
-      color: #374151;
-    }
-
-    /* ============== Videos / talks shown ============== */
-    .videos-grid {
+    .about-facts {
       display: grid;
-      gap: 20px;
-      margin-top: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 0;
+      border-top: 1px solid var(--rule);
+      margin-top: 36px;
     }
-    @media (min-width: 760px) {
-      .videos-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+    .fact {
+      padding: 18px 0 4px;
+      border-bottom: 1px solid var(--rule-soft);
     }
-    .video-card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: transform .25s ease, box-shadow .25s ease;
-      display: block;
-      text-decoration: none;
-      color: inherit;
-    }
-    .video-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 2px 4px rgba(15,23,42,0.05), 0 18px 38px rgba(15,23,42,0.09);
-    }
-    .video-thumb {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      background: #0e1116;
-      overflow: hidden;
-    }
-    .video-thumb img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform .4s ease;
-    }
-    .video-card:hover .video-thumb img { transform: scale(1.03); }
-    .video-play {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 64px; height: 64px;
-      background: rgba(255,255,255,0.94);
-      color: var(--accent-deep);
-      border-radius: 50%;
-      display: flex;
-      align-items: center; justify-content: center;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-      transition: transform .2s ease, background .2s ease;
-    }
-    .video-card:hover .video-play {
-      background: white;
-      transform: translate(-50%, -50%) scale(1.06);
-    }
-    .video-play svg { width: 26px; height: 26px; margin-right: -3px; }
-    .video-body {
-      padding: 20px 22px 22px;
-    }
-    .video-eyebrow {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      color: var(--accent);
-      text-transform: uppercase;
-      margin-bottom: 7px;
-      display: block;
-    }
-    .video-title {
+    .fact-num {
       font-family: 'Frank Ruhl Libre', serif;
-      font-size: 19px;
+      font-size: 13px;
+      letter-spacing: 1.8px;
+      color: var(--accent);
       font-weight: 700;
-      color: var(--ink);
-      margin: 0 0 6px;
-      line-height: 1.3;
+      text-transform: uppercase;
+      margin-bottom: 4px;
     }
-    .video-context {
-      font-size: 14px;
-      color: var(--muted);
-      margin: 0;
+    .fact-text {
+      font-size: 14.5px;
+      color: var(--ink);
+      line-height: 1.4;
+      font-weight: 400;
     }
 
-    /* ============== Lectures (offerings) ============== */
-    .lecture-grid {
+    /* ============ Section header ============ */
+    .section-head {
+      padding: 80px 0 12px;
+    }
+    .section-head-rule {
+      display: flex;
+      align-items: baseline;
+      gap: 18px;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 14px;
+      margin-bottom: 36px;
+    }
+    .section-num {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 13px;
+      letter-spacing: 2.4px;
+      color: var(--accent);
+      font-weight: 700;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+    .section-name {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 700;
+      margin: 0;
+      letter-spacing: -0.5px;
+      color: var(--ink);
+      line-height: 1.05;
+    }
+
+    /* ============ Lectures (offerings) ============ */
+    .lectures {
+      padding-bottom: 24px;
+    }
+    .lecture {
+      padding: 44px 0;
+      border-bottom: 1px solid var(--rule-soft);
       display: grid;
-      gap: 22px;
-      margin-top: 28px;
+      gap: 28px;
     }
     @media (min-width: 880px) {
-      .lecture-grid { grid-template-columns: 1fr 1fr; gap: 26px; }
+      .lecture {
+        grid-template-columns: 1fr 1.6fr;
+        gap: 64px;
+        padding: 56px 0;
+      }
     }
-    .lecture-card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 30px 26px;
-      box-shadow: var(--shadow);
-      display: flex;
-      flex-direction: column;
-      transition: transform .25s ease, box-shadow .25s ease;
-    }
-    @media (min-width: 720px) {
-      .lecture-card { padding: 36px 32px; }
-    }
-    .lecture-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 2px 4px rgba(15,23,42,0.05), 0 16px 36px rgba(15,23,42,0.08);
-    }
-    .lecture-icon {
-      display: inline-flex;
-      width: 52px; height: 52px;
-      align-items: center; justify-content: center;
-      background: var(--accent-soft);
-      color: var(--accent-deep);
-      border-radius: 14px;
-      margin-bottom: 18px;
-    }
-    .lecture-icon svg { width: 26px; height: 26px; }
-    .lecture-title {
+    .lecture:last-child { border-bottom: none; }
+    .lec-index {
       font-family: 'Frank Ruhl Libre', serif;
-      font-size: 24px;
+      font-size: 84px;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--accent);
+      letter-spacing: -3px;
+      margin-bottom: 16px;
+    }
+    @media (min-width: 880px) {
+      .lec-index { font-size: 120px; margin-bottom: 0; }
+    }
+    .lec-side h3 {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: clamp(26px, 3vw, 32px);
       font-weight: 700;
-      margin: 0 0 12px;
+      margin: 8px 0 0;
+      line-height: 1.15;
+      letter-spacing: -0.4px;
       color: var(--ink);
-      line-height: 1.25;
     }
-    .lecture-desc {
-      font-size: 16px;
-      line-height: 1.7;
+    .lec-side .lec-tag {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      font-weight: 600;
+    }
+    .lec-desc {
+      font-size: 17px;
+      line-height: 1.78;
       color: var(--ink-soft);
-      margin: 0 0 24px;
-      flex-grow: 1;
+      margin: 0 0 28px;
+      font-weight: 300;
     }
-    .formats {
+    .lec-formats {
       list-style: none;
       padding: 0;
       margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
+      border-top: 1px solid var(--rule);
     }
-    .format {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 14px 16px;
-      background: #fafaf6;
-      border: 1px solid var(--line);
-      border-radius: 12px;
+    .lec-fmt {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 24px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--rule-soft);
+      align-items: baseline;
     }
-    .format-bullet {
-      display: inline-flex;
-      flex-shrink: 0;
-      align-items: center; justify-content: center;
-      width: 28px; height: 28px;
-      background: var(--card);
-      border: 1px solid var(--accent-soft);
-      color: var(--accent);
-      border-radius: 8px;
-      margin-top: 1px;
-    }
-    .format-bullet svg { width: 14px; height: 14px; }
-    .format-body { flex-grow: 1; }
-    .format-name {
-      font-weight: 600;
-      font-size: 14.5px;
+    .lec-fmt:last-child { border-bottom: none; }
+    .lec-fmt-name {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: 0.5px;
       color: var(--ink);
-      margin: 0 0 2px;
     }
-    .format-detail {
-      font-size: 14px;
-      color: var(--muted);
-      margin: 0;
-      line-height: 1.55;
+    .lec-fmt-name small {
+      display: block;
+      font-family: 'Heebo', sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .lec-fmt-detail {
+      font-size: 15px;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+    @media (max-width: 540px) {
+      .lec-fmt { grid-template-columns: 1fr; gap: 6px; }
     }
 
-    /* ============== Contact ============== */
-    .contact-card {
-      background: linear-gradient(135deg, var(--accent-deep) 0%, var(--accent) 100%);
-      color: white;
-      border-radius: 18px;
-      padding: 36px 28px;
-      text-align: center;
-      box-shadow: 0 2px 4px rgba(15,23,42,0.05), 0 14px 30px rgba(74,111,94,0.18);
+    /* ============ Contact strip ============ */
+    .contact {
+      padding: 84px 0 80px;
+      border-top: 3px double var(--rule);
+      margin-top: 56px;
     }
-    @media (min-width: 720px) {
-      .contact-card { padding: 48px 40px; }
-    }
-    .contact-eyebrow {
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      color: rgba(255,255,255,0.7);
-      text-transform: uppercase;
-      margin-bottom: 14px;
-    }
-    .contact-title {
+    .contact-lead {
       font-family: 'Frank Ruhl Libre', serif;
-      font-size: clamp(26px, 3.6vw, 32px);
-      font-weight: 700;
-      margin: 0 0 12px;
-      color: white;
+      font-size: clamp(28px, 3.6vw, 38px);
+      line-height: 1.25;
+      letter-spacing: -0.4px;
+      max-width: 720px;
+      margin: 0 0 32px;
+      color: var(--ink);
+      font-weight: 500;
     }
-    .contact-text {
-      color: rgba(255,255,255,0.85);
-      font-size: 16px;
-      margin: 0 auto 28px;
-      max-width: 460px;
-      line-height: 1.6;
-    }
+    .contact-lead .accent { color: var(--accent); }
     .contact-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
+      gap: 36px;
+      align-items: baseline;
+      padding-top: 24px;
+      border-top: 1px solid var(--rule);
     }
-    .contact-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 13px 22px;
-      background: white;
-      color: var(--accent-deep);
+    .contact-item {
+      display: block;
+    }
+    .contact-label {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ink-mute);
       font-weight: 600;
-      font-size: 15px;
-      border-radius: 12px;
+      margin-bottom: 4px;
+    }
+    .contact-val {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: clamp(18px, 2vw, 22px);
+      color: var(--ink);
+      font-weight: 500;
       text-decoration: none;
-      transition: transform .2s ease, background .2s ease;
+      border-bottom: 1px solid var(--rule-soft);
+      padding-bottom: 2px;
+      transition: border-color .15s ease, color .15s ease;
     }
-    .contact-btn svg { width: 17px; height: 17px; }
-    .contact-btn:hover {
-      transform: translateY(-1px);
-      background: rgba(255,255,255,0.94);
-    }
-    .contact-btn--ghost {
-      background: rgba(255,255,255,0.12);
-      color: white;
-      border: 1px solid rgba(255,255,255,0.22);
-    }
-    .contact-btn--ghost:hover {
-      background: rgba(255,255,255,0.18);
+    .contact-val:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
     }
 
-    footer {
-      padding: 36px 0 48px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 13px;
+    /* ============ Videos (at bottom) ============ */
+    .talks {
+      padding: 64px 0 40px;
+      border-top: 1px solid var(--rule);
     }
-    footer .links {
-      display: inline-flex;
-      gap: 20px;
-      margin-top: 8px;
+    .talks-head {
+      margin-bottom: 30px;
+    }
+    .talks-kicker {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .talks-title {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: clamp(22px, 3vw, 28px);
+      font-weight: 700;
+      margin: 0;
+      color: var(--ink);
+      letter-spacing: -0.3px;
+    }
+    .talks-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      border-top: 1px solid var(--rule);
+    }
+    .talk {
+      border-bottom: 1px solid var(--rule-soft);
+    }
+    .talk a {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 24px;
+      align-items: baseline;
+      padding: 22px 0;
+      text-decoration: none;
+      color: inherit;
+      transition: padding .2s ease;
+    }
+    .talk a:hover { padding-right: 8px; }
+    .talk-marker {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      color: var(--accent);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .talk-body {
+      min-width: 0;
+    }
+    .talk-title {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: clamp(19px, 2.4vw, 24px);
+      font-weight: 700;
+      color: var(--ink);
+      margin: 0 0 4px;
+      line-height: 1.25;
+      letter-spacing: -0.2px;
+    }
+    .talk-context {
+      font-size: 14px;
+      color: var(--ink-mute);
+      margin: 0;
+      font-weight: 300;
+    }
+    .talk-cue {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      font-weight: 600;
+      white-space: nowrap;
+      transition: color .2s ease;
+    }
+    .talk a:hover .talk-cue { color: var(--accent); }
+    @media (max-width: 600px) {
+      .talk a { grid-template-columns: auto 1fr; }
+      .talk-cue { grid-column: 1 / -1; padding-right: 38px; }
+    }
+
+    /* ============ Footer ============ */
+    footer {
+      padding: 28px 0 36px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 12px;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      font-weight: 500;
     }
     footer a {
-      color: var(--muted);
+      color: var(--ink-mute);
       text-decoration: none;
       transition: color .15s ease;
     }
     footer a:hover { color: var(--accent); }
+    .foot-links {
+      display: inline-flex;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
 
+    /* ============ Reveal ============ */
     .reveal {
       opacity: 0;
-      transform: translateY(12px);
-      transition: opacity .6s ease, transform .6s ease;
+      transform: translateY(10px);
+      transition: opacity .7s ease, transform .7s ease;
     }
     .reveal.visible {
       opacity: 1;
@@ -494,244 +496,197 @@
 </head>
 <body>
 
-  <!-- ============ HERO ============ -->
-  <header class="hero">
-    <div class="container">
-      <span class="hero-eyebrow">מרצה · אלעד רפואה</span>
-      <h1 class="hero-name">אלעד רפואה</h1>
-      <p class="hero-tagline">מרצה על בינה מלאכותית בעולם הקליני והמחקרי</p>
-      <div class="hero-divider"></div>
-    </div>
-  </header>
+  <div class="wrap">
 
-  <!-- ============ ABOUT ============ -->
-  <section id="about">
-    <div class="container">
-      <div class="about-card reveal">
-        <div class="about-photo">
-          <!-- Drop a file named photo.jpg (or .png) in the same folder and it will appear here -->
-          <img src="photo.jpg" alt="אלעד רפואה" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <div class="about-photo-fallback" style="display:none;">א</div>
+    <!-- ============ TOP STRIP ============ -->
+    <div class="top">
+      <span class="top-mark">א&middot;ר</span>
+      <span class="top-meta">תל אביב &middot; 2026</span>
+    </div>
+
+    <!-- ============ MASTHEAD ============ -->
+    <header class="mast">
+      <div class="mast-issue">הרצאות וסדנאות &middot; כרך ראשון</div>
+      <h1 class="mast-name">אלעד<br/>רפואה</h1>
+      <p class="mast-tag">
+        מרצה על <span class="accent">בינה מלאכותית</span> בעולם הקליני והמחקרי. שיחה ביקורתית, מבוססת ראיות, על מה שהכלים האלה כן עושים, מה הם לא, ואיך עובדים איתם בלי לאבד את האנושיות.
+      </p>
+    </header>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="about reveal">
+      <figure class="about-figure">
+        <img src="photo.jpg" alt="אלעד רפואה">
+        <figcaption class="about-caption">דיוקן &middot; בר-אילן, 2026</figcaption>
+      </figure>
+
+      <div class="about-body">
+        <div class="about-kicker">קצת עליי</div>
+        <p class="about-lead">
+          דוקטורנט בפסיכולוגיה ופסיכולוג קליני בהתמחות, עוסק בנקודת המפגש בין רגש, יחסים בינאישיים וטכנולוגיה.
+        </p>
+        <p class="about-text">
+          מנהל המעבדה לרגש ויחסים בינאישיים (ARLAB) באוניברסיטת בר-אילן, בהנחיית פרופ' אשכול רפאלי, ופסיכולוג בהתמחות קלינית במרכז הרפואי איכילוב. חתן פרס נשיא המדינה למצוינות מדעית וחדשנות (2025) וקצין באמ"ן במילואים. פרסם מאמרים ב-<em>Nature</em>, ב-<em>JMIR Mental Health</em>, ב-<em>Frontiers in Digital Health</em> ובכתבי עת נוספים, והעביר עשרות הרצאות וסדנאות באוניברסיטאות, בבתי חולים ובמכוני מחקר.
+        </p>
+
+        <div class="about-facts">
+          <div class="fact">
+            <div class="fact-num">01</div>
+            <div class="fact-text">פרס נשיא המדינה<br/>למצוינות מדעית, 2025</div>
+          </div>
+          <div class="fact">
+            <div class="fact-num">02</div>
+            <div class="fact-text">מנהל מעבדה<br/>ARLAB, בר-אילן</div>
+          </div>
+          <div class="fact">
+            <div class="fact-num">03</div>
+            <div class="fact-text">פסיכולוג קליני<br/>בהתמחות, איכילוב</div>
+          </div>
+          <div class="fact">
+            <div class="fact-num">04</div>
+            <div class="fact-text">קצין באמ"ן<br/>במילואים</div>
+          </div>
         </div>
-        <div class="about-body">
-          <h2 class="about-title">קצת עליי</h2>
-          <p class="about-text">
-            דוקטורנט במחלקה לפסיכולוגיה באוניברסיטת בר-אילן ומנהל המעבדה לרגש ויחסים בינאישיים (ARLAB) בהנחיית פרופ' אשכול רפאלי. פסיכולוג בהתמחות קלינית במרכז הרפואי איכילוב. <strong>חתן פרס נשיא המדינה למצוינות מדעית וחדשנות (2025)</strong>. קצין באמ"ן במילואים. עוסק בחיבור בין טכנולוגיה, מחקר וידע קליני, ופרסם מאמרים ב-<em>Nature</em>, ב-<em>JMIR Mental Health</em>, ב-<em>Frontiers in Digital Health</em> ובכתבי עת נוספים. בעל ניסיון רב בהעברת הרצאות וסדנאות באוניברסיטאות, בבתי חולים ובמכוני מחקר.
-          </p>
-          <div class="about-pills">
-            <span class="pill">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111 5.518.442c.499.04.701.663.321.988l-4.204 3.602 1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885-4.725 2.885a.562.562 0 0 1-.84-.61l1.285-5.386-4.204-3.6a.562.562 0 0 1 .32-.989l5.519-.442z"></path>
-              </svg>
-              חתן פרס נשיא המדינה · 2025
-            </span>
-            <span class="pill pill--green">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
-                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
-              </svg>
-              דוקטורנט · בר-אילן
-            </span>
-            <span class="pill pill--green">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5z"></path>
-              </svg>
-              פסיכולוג בהתמחות קלינית · איכילוב
-            </span>
-            <span class="pill pill--ink">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2 4 6v6c0 5 3.5 9.2 8 10 4.5-.8 8-5 8-10V6z"></path>
-              </svg>
-              קצין באמ"ן · מילואים
-            </span>
-          </div>
+      </div>
+    </section>
+
+    <!-- ============ LECTURES (OFFERINGS) ============ -->
+    <div class="section-head">
+      <div class="section-head-rule">
+        <span class="section-num">I. התוכן</span>
+        <h2 class="section-name">שתי הרצאות, שני פורמטים</h2>
+      </div>
+    </div>
+
+    <section class="lectures">
+
+      <article class="lecture reveal">
+        <div class="lec-side">
+          <div class="lec-index">01</div>
+          <span class="lec-tag">בריאות הנפש</span>
+          <h3>בינה מלאכותית בחדר הטיפול</h3>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ============ VIDEOS / TALKS ============ -->
-  <section id="talks">
-    <div class="container">
-      <div class="section-intro">
-        <span class="eyebrow">דוגמאות מהרצאות</span>
-        <h2 class="section-heading">לראות איך זה נראה</h2>
-        <p class="section-sub">שתי הרצאות שניתנו לקהל אקדמי וקליני, פתוחות לצפייה ביוטיוב.</p>
-      </div>
-
-      <div class="videos-grid">
-        <a class="video-card reveal" href="https://www.youtube.com/watch?v=8hIzZZTf9Iw" target="_blank" rel="noopener">
-          <div class="video-thumb">
-            <img src="https://img.youtube.com/vi/8hIzZZTf9Iw/maxresdefault.jpg" alt="בינה מלאכותית בעולם המחקר" onerror="this.src='https://img.youtube.com/vi/8hIzZZTf9Iw/hqdefault.jpg';">
-            <span class="video-play" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"></polygon></svg>
-            </span>
-          </div>
-          <div class="video-body">
-            <span class="video-eyebrow">הרצאה · מחקר</span>
-            <h3 class="video-title">בינה מלאכותית בעולם המחקר</h3>
-            <p class="video-context">הרצאה ציבורית בזום · יותר מ-300 משתתפים</p>
-          </div>
-        </a>
-
-        <a class="video-card reveal" href="https://www.youtube.com/watch?v=an3qHDVjDRM" target="_blank" rel="noopener">
-          <div class="video-thumb">
-            <img src="https://img.youtube.com/vi/an3qHDVjDRM/maxresdefault.jpg" alt="בינה מלאכותית בעולם הטיפול" onerror="this.src='https://img.youtube.com/vi/an3qHDVjDRM/hqdefault.jpg';">
-            <span class="video-play" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"></polygon></svg>
-            </span>
-          </div>
-          <div class="video-body">
-            <span class="video-eyebrow">הרצאה · קליני</span>
-            <h3 class="video-title">בינה מלאכותית בעולם הטיפול</h3>
-            <p class="video-context">הרצאה לאנשי מקצוע מעולם בריאות הנפש</p>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ LECTURES (OFFERINGS) ============ -->
-  <section id="lectures">
-    <div class="container">
-      <div class="section-intro">
-        <span class="eyebrow">שתי הרצאות · שני פורמטים לכל אחת</span>
-        <h2 class="section-heading">הרצאות וסדנאות</h2>
-        <p class="section-sub">מותאמות לקהל אקדמי, קליני ומחקרי. הצעת מחיר מותאמת לכל מסגרת.</p>
-      </div>
-
-      <div class="lecture-grid">
-        <!-- LECTURE 1: MENTAL HEALTH -->
-        <article class="lecture-card reveal">
-          <div class="lecture-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M19.5 12.572 12 20l-7.5-7.428A5 5 0 1 1 12 6.005a5 5 0 1 1 7.5 6.567"></path>
-            </svg>
-          </div>
-          <h3 class="lecture-title">בינה מלאכותית בבריאות הנפש</h3>
-          <p class="lecture-desc">
-            איך AI נכנס לחדר הטיפול. אילו תפקידים הוא ממלא לאנשי מקצוע ולפונים, מה מתאים ומה פחות, ואיך מעצבים כלים שמכבדים את הצרכים הפסיכולוגיים האנושיים. ההרצאה משלבת ממצאי מחקר עדכניים עם דוגמאות מהשטח הקליני.
+        <div class="lec-main">
+          <p class="lec-desc">
+            איך AI נכנס לעבודה הקלינית. אילו תפקידים הוא ממלא לאנשי מקצוע ולפונים, מה מתאים ומה פחות, ואיך מעצבים כלים שמכבדים את הצרכים הפסיכולוגיים האנושיים. ההרצאה משלבת ממצאי מחקר עדכניים עם דוגמאות מהשטח הקליני.
           </p>
-          <ul class="formats">
-            <li class="format">
-              <span class="format-bullet">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <polyline points="12 6 12 12 16 14"></polyline>
-                </svg>
-              </span>
-              <div class="format-body">
-                <p class="format-name">הרצאה</p>
-                <p class="format-detail">שעתיים אקדמיות</p>
+          <ul class="lec-formats">
+            <li class="lec-fmt">
+              <div class="lec-fmt-name">
+                <small>פורמט א'</small>
+                הרצאה
               </div>
+              <div class="lec-fmt-detail">שעתיים אקדמיות</div>
             </li>
-            <li class="format">
-              <span class="format-bullet">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="9" cy="7" r="4"></circle>
-                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                </svg>
-              </span>
-              <div class="format-body">
-                <p class="format-name">הרצאה וסדנה</p>
-                <p class="format-detail">ארבע שעות ומעלה. תרגול מעשי בכלים נבחרים וליווי בבנייה אישית של תהליכי עבודה.</p>
+            <li class="lec-fmt">
+              <div class="lec-fmt-name">
+                <small>פורמט ב'</small>
+                הרצאה וסדנה
               </div>
+              <div class="lec-fmt-detail">ארבע שעות ומעלה &middot; תרגול מעשי בכלים נבחרים וליווי בבנייה אישית של תהליכי עבודה</div>
             </li>
           </ul>
-        </article>
+        </div>
+      </article>
 
-        <!-- LECTURE 2: RESEARCH -->
-        <article class="lecture-card reveal">
-          <div class="lecture-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-            </svg>
-          </div>
-          <h3 class="lecture-title">בינה מלאכותית בעולם המחקר</h3>
-          <p class="lecture-desc">
+      <article class="lecture reveal">
+        <div class="lec-side">
+          <div class="lec-index">02</div>
+          <span class="lec-tag">מחקר אקדמי</span>
+          <h3>בינה מלאכותית בעולם המחקר</h3>
+        </div>
+
+        <div class="lec-main">
+          <p class="lec-desc">
             מ-Deep Research ועד כתיבה אקדמית. מתי הכלים האלה באמת עוזרים, איפה הם נכשלים, ואיך עובדים איתם בלי לאבד שליטה על התוכן. ההרצאה מכסה סקירת ספרות, ניתוח נתונים, כתיבה ועריכה, וניהול ידע לאורך פרויקט.
           </p>
-          <ul class="formats">
-            <li class="format">
-              <span class="format-bullet">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <polyline points="12 6 12 12 16 14"></polyline>
-                </svg>
-              </span>
-              <div class="format-body">
-                <p class="format-name">הרצאה</p>
-                <p class="format-detail">שעתיים אקדמיות</p>
+          <ul class="lec-formats">
+            <li class="lec-fmt">
+              <div class="lec-fmt-name">
+                <small>פורמט א'</small>
+                הרצאה
               </div>
+              <div class="lec-fmt-detail">שעתיים אקדמיות</div>
             </li>
-            <li class="format">
-              <span class="format-bullet">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="9" cy="7" r="4"></circle>
-                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                </svg>
-              </span>
-              <div class="format-body">
-                <p class="format-name">הרצאה וסדנה</p>
-                <p class="format-detail">ארבע שעות ומעלה. תהליכים מקצה לקצה, הקמת בסיס ידע אישי ובניית פרומפטים מותאמים.</p>
+            <li class="lec-fmt">
+              <div class="lec-fmt-name">
+                <small>פורמט ב'</small>
+                הרצאה וסדנה
               </div>
+              <div class="lec-fmt-detail">ארבע שעות ומעלה &middot; תהליכים מקצה לקצה, הקמת בסיס ידע אישי ובניית פרומפטים מותאמים</div>
             </li>
           </ul>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ CONTACT ============ -->
-  <section id="contact">
-    <div class="container">
-      <div class="contact-card reveal">
-        <p class="contact-eyebrow">לתיאום הרצאה</p>
-        <h2 class="contact-title">נשמח לשמוע על הפורום שלכם</h2>
-        <p class="contact-text">
-          כל הצעה מותאמת לקהל המסוים, לזמן הקיים ולמטרות של המפגש. אפשר ליצור קשר במייל או בטלפון.
-        </p>
-        <div class="contact-row">
-          <a class="contact-btn" href="mailto:eladrefoua@gmail.com">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-              <polyline points="22,6 12,13 2,6"></polyline>
-            </svg>
-            eladrefoua@gmail.com
-          </a>
-          <a class="contact-btn contact-btn--ghost" href="tel:+972525373331">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-            </svg>
-            052-537-3331
-          </a>
         </div>
-      </div>
-    </div>
-  </section>
+      </article>
 
-  <footer>
-    <div class="container">
-      <div>© אלעד רפואה · 2026</div>
-      <div class="links">
-        <a href="mailto:eladrefoua@gmail.com">דוא"ל</a>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="contact reveal">
+      <p class="contact-lead">
+        כל הצעה <span class="accent">מותאמת לקהל הספציפי</span>, לזמן הקיים ולמטרות של המפגש. נשמח לשמוע על הפורום שלכם.
+      </p>
+      <div class="contact-row">
+        <a class="contact-item" href="mailto:eladrefoua@gmail.com">
+          <div class="contact-label">דוא"ל</div>
+          <span class="contact-val">eladrefoua@gmail.com</span>
+        </a>
+        <a class="contact-item" href="tel:+972525373331">
+          <div class="contact-label">טלפון</div>
+          <span class="contact-val">052-537-3331</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============ TALKS (videos at bottom) ============ -->
+    <section class="talks reveal">
+      <div class="talks-head">
+        <div class="talks-kicker">לצפייה ביוטיוב</div>
+        <h2 class="talks-title">הרצאות קודמות</h2>
+      </div>
+
+      <ul class="talks-list">
+        <li class="talk">
+          <a href="https://www.youtube.com/watch?v=8hIzZZTf9Iw" target="_blank" rel="noopener">
+            <span class="talk-marker">01 &mdash;</span>
+            <div class="talk-body">
+              <h3 class="talk-title">בינה מלאכותית בעולם המחקר</h3>
+              <p class="talk-context">הרצאה ציבורית בזום &middot; יותר מ-300 משתתפים</p>
+            </div>
+            <span class="talk-cue">צפייה &larr;</span>
+          </a>
+        </li>
+        <li class="talk">
+          <a href="https://www.youtube.com/watch?v=an3qHDVjDRM" target="_blank" rel="noopener">
+            <span class="talk-marker">02 &mdash;</span>
+            <div class="talk-body">
+              <h3 class="talk-title">בינה מלאכותית בעולם הטיפול</h3>
+              <p class="talk-context">הרצאה לאנשי מקצוע מעולם בריאות הנפש</p>
+            </div>
+            <span class="talk-cue">צפייה &larr;</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <footer>
+      <div>&copy; אלעד רפואה &middot; 2026</div>
+      <div class="foot-links">
         <a href="https://scholar.google.com/citations?user=uHWnnW8AAAAJ" target="_blank" rel="noopener">Google Scholar</a>
         <a href="https://eshkol2.wixsite.com/arlab-biu" target="_blank" rel="noopener">ARLAB</a>
+        <a href="mailto:eladrefoua@gmail.com">דוא"ל</a>
       </div>
-    </div>
-  </footer>
+    </footer>
+
+  </div>
 
   <script>
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
       });
-    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   </script>
 </body>
