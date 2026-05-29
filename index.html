@@ -8,7 +8,7 @@
   <meta name="description" content="אלעד רפואה — דוקטורנט באוניברסיטת בר-אילן, מנהל המעבדה לרגש ויחסים בינאישיים, חתן פרס נשיא המדינה למצוינות מדעית וחדשנות. מרצה על בינה מלאכותית בעולם הקליני והמחקרי." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Hebrew:wght@400;500;700;900&family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bellefair&family=David+Libre:wght@400;500;700&family=Assistant:wght@300;400;500;600;700&family=Caveat:wght@500;700&family=Noto+Serif+Hebrew:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --paper: #f4efe6;
@@ -80,7 +80,7 @@
     @media (min-width: 1000px) { .navbar-inner { padding: 18px 56px; } }
 
     .nav-brand {
-      font-family: 'Noto Serif Hebrew', Georgia, serif;
+      font-family: 'David Libre', 'Noto Serif Hebrew', Georgia, serif;
       font-weight: 700;
       font-size: 17px;
       color: var(--ink);
@@ -294,17 +294,17 @@
     @media (min-width: 720px) { .mast-issue-mark { margin-bottom: 22px; } }
 
     .mast-name {
-      font-family: 'Noto Serif Hebrew', Georgia, serif;
-      font-weight: 900;
-      font-size: clamp(54px, 13.5vw, 140px);
-      line-height: 0.9;
-      letter-spacing: -2px;
+      font-family: 'Bellefair', 'David Libre', Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(60px, 14.5vw, 156px);
+      line-height: 0.92;
+      letter-spacing: -1px;
       margin: 0;
       color: var(--ink);
       word-break: keep-all;
       position: relative;
     }
-    @media (min-width: 720px) { .mast-name { letter-spacing: -3px; } }
+    @media (min-width: 720px) { .mast-name { letter-spacing: -1.5px; } }
 
     .mast-name::after {
       content: "";
@@ -414,13 +414,13 @@
       font-weight: 600;
     }
     .about-lead {
-      font-family: 'Noto Serif Hebrew', serif;
-      font-size: clamp(20px, 2.6vw, 28px);
-      line-height: 1.42;
+      font-family: 'David Libre', 'Noto Serif Hebrew', serif;
+      font-size: clamp(21px, 2.7vw, 30px);
+      line-height: 1.45;
       color: var(--ink);
       font-weight: 500;
       margin: 0 0 24px;
-      letter-spacing: -0.3px;
+      letter-spacing: -0.2px;
     }
     .about-text {
       font-size: clamp(15.5px, 1.8vw, 17px);
@@ -448,21 +448,21 @@
     }
     @media (min-width: 720px) { .section-head-rule { gap: 18px; margin-bottom: 36px; } }
     .section-num {
-      font-family: 'Noto Serif Hebrew', serif;
-      font-size: 12px;
-      letter-spacing: 2.2px;
+      font-family: 'Caveat', 'David Libre', cursive, serif;
+      font-size: 24px;
+      letter-spacing: 0;
       color: var(--accent);
       font-weight: 700;
-      text-transform: uppercase;
+      text-transform: none;
       flex-shrink: 0;
     }
-    @media (min-width: 720px) { .section-num { font-size: 13px; letter-spacing: 2.4px; } }
+    @media (min-width: 720px) { .section-num { font-size: 28px; } }
     .section-name {
-      font-family: 'Noto Serif Hebrew', serif;
-      font-size: clamp(24px, 4.5vw, 40px);
+      font-family: 'David Libre', 'Noto Serif Hebrew', serif;
+      font-size: clamp(26px, 4.6vw, 42px);
       font-weight: 700;
       margin: 0;
-      letter-spacing: -0.4px;
+      letter-spacing: -0.3px;
       color: var(--ink);
       line-height: 1.1;
     }
@@ -484,13 +484,16 @@
     }
     .lecture:last-child { border-bottom: none; }
     .lec-index {
-      font-family: 'Noto Serif Hebrew', serif;
-      font-size: clamp(64px, 14vw, 120px);
-      font-weight: 900;
+      font-family: 'Caveat', cursive;
+      font-size: clamp(86px, 16vw, 150px);
+      font-weight: 700;
       line-height: 1;
       color: var(--accent);
-      letter-spacing: -3px;
-      margin-bottom: 12px;
+      letter-spacing: 0;
+      margin-bottom: 8px;
+      transform: rotate(-3deg);
+      transform-origin: right center;
+      display: inline-block;
     }
     @media (min-width: 880px) { .lec-index { margin-bottom: 0; } }
     .lec-side .lec-tag {
@@ -502,12 +505,12 @@
       font-weight: 600;
     }
     .lec-side h3 {
-      font-family: 'Noto Serif Hebrew', serif;
-      font-size: clamp(22px, 3.4vw, 32px);
+      font-family: 'David Libre', 'Noto Serif Hebrew', serif;
+      font-size: clamp(23px, 3.5vw, 34px);
       font-weight: 700;
       margin: 8px 0 0;
-      line-height: 1.18;
-      letter-spacing: -0.4px;
+      line-height: 1.22;
+      letter-spacing: -0.2px;
       color: var(--ink);
     }
     .lec-desc {
@@ -616,10 +619,10 @@
       }
     }
     .contact-lead {
-      font-family: 'Noto Serif Hebrew', serif;
-      font-size: clamp(24px, 3.8vw, 38px);
-      line-height: 1.25;
-      letter-spacing: -0.4px;
+      font-family: 'David Libre', 'Noto Serif Hebrew', serif;
+      font-size: clamp(25px, 3.9vw, 40px);
+      line-height: 1.28;
+      letter-spacing: -0.2px;
       margin: 0 0 28px;
       color: var(--ink);
       font-weight: 500;
@@ -882,12 +885,12 @@
       margin-bottom: 8px;
     }
     .talks-title {
-      font-family: 'Noto Serif Hebrew', serif;
-      font-size: clamp(22px, 3.2vw, 28px);
+      font-family: 'David Libre', 'Noto Serif Hebrew', serif;
+      font-size: clamp(23px, 3.3vw, 30px);
       font-weight: 700;
       margin: 0;
       color: var(--ink);
-      letter-spacing: -0.3px;
+      letter-spacing: -0.2px;
     }
     .talks-list {
       list-style: none;
@@ -909,23 +912,23 @@
     @media (min-width: 720px) { .talk a { gap: 24px; } }
     .talk a:hover { padding-right: 8px; }
     .talk-marker {
-      font-family: 'Noto Serif Hebrew', serif;
-      font-size: 13px;
-      letter-spacing: 1.4px;
+      font-family: 'Caveat', cursive;
+      font-size: 22px;
+      letter-spacing: 0;
       color: var(--accent);
       font-weight: 700;
-      text-transform: uppercase;
+      text-transform: none;
       white-space: nowrap;
     }
     .talk-body { min-width: 0; }
     .talk-title {
-      font-family: 'Noto Serif Hebrew', serif;
-      font-size: clamp(17px, 2.4vw, 24px);
+      font-family: 'David Libre', 'Noto Serif Hebrew', serif;
+      font-size: clamp(18px, 2.5vw, 25px);
       font-weight: 700;
       color: var(--ink);
       margin: 0 0 4px;
-      line-height: 1.25;
-      letter-spacing: -0.2px;
+      line-height: 1.28;
+      letter-spacing: -0.15px;
     }
     .talk-context {
       font-size: clamp(13px, 1.6vw, 14.5px);
