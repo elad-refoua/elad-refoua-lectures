@@ -88,12 +88,39 @@
 
     /* ============ Masthead / Hero ============ */
     .mast {
-      padding: 64px 0 56px;
+      padding: 48px 0 56px;
       border-bottom: 3px double var(--rule);
       position: relative;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      align-items: center;
     }
-    @media (min-width: 720px) { .mast { padding: 96px 0 76px; } }
-    @media (min-width: 1000px) { .mast { padding: 120px 0 88px; } }
+    @media (min-width: 720px) { .mast { padding: 72px 0 76px; gap: 40px; } }
+    @media (min-width: 1000px) { .mast { padding: 88px 0 88px; gap: 56px; } }
+    @media (min-width: 880px) {
+      .mast { grid-template-columns: 1.05fr 1fr; }
+    }
+    .mast-image {
+      order: -1;
+      width: 100%;
+      overflow: hidden;
+    }
+    @media (min-width: 880px) {
+      .mast-image { order: 0; }
+    }
+    .mast-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      filter: contrast(1.02);
+    }
+    @media (min-width: 880px) {
+      .mast-image img { aspect-ratio: 4/3; }
+    }
+    .mast-text { min-width: 0; }
 
     .mast-name {
       font-family: 'Frank Ruhl Libre', Georgia, serif;
@@ -755,10 +782,15 @@
 
     <!-- ============ MASTHEAD ============ -->
     <header class="mast">
-      <h1 class="mast-name">אלעד<br/>רפואה</h1>
-      <p class="mast-tag">
-        מרצה על <span class="accent">בינה מלאכותית</span> בעולם הקליני והמחקרי. שיחה ביקורתית, מבוססת ראיות, על מה שהכלים האלה כן עושים, מה הם לא, ואיך עובדים איתם בלי לאבד את האנושיות.
-      </p>
+      <div class="mast-text">
+        <h1 class="mast-name">אלעד<br/>רפואה</h1>
+        <p class="mast-tag">
+          מרצה על <span class="accent">בינה מלאכותית</span> בעולם הקליני והמחקרי. שיחה ביקורתית, מבוססת ראיות, על מה שהכלים האלה כן עושים, מה הם לא, ואיך עובדים איתם בלי לאבד את האנושיות.
+        </p>
+      </div>
+      <figure class="mast-image">
+        <img src="hero.jpg" alt="" loading="eager">
+      </figure>
     </header>
 
     <!-- ============ ABOUT ============ -->
@@ -773,7 +805,7 @@
           דוקטורנט לפסיכולוגיה ופסיכולוג קליני בהתמחות, עוסק בנקודת המפגש בין רגש, יחסים בינאישיים וטכנולוגיה.
         </p>
         <p class="about-text">
-          מנהל המעבדה לרגש ויחסים בינאישיים (ARLAB) באוניברסיטת בר-אילן, בהנחיית פרופ' אשכול רפאלי, ופסיכולוג בהתמחות קלינית. חבר במכון המחקר והפיתוח של <em>השלישי המלאכותי</em>. עוסק בחיבור בין קליניקה, מחקר וטכנולוגיה. חתן פרס נשיא המדינה למצוינות מדעית וחדשנות (2025) וקצין אמ"ן במיל'. העביר עשרות הרצאות וסדנאות באוניברסיטאות, בבתי חולים ובמכוני מחקר.
+          מנהל המעבדה לרגש ויחסים בינאישיים (ARLAB) באוניברסיטת בר-אילן, בהנחיית פרופ' אשכול רפאלי, ופסיכולוג בהתמחות קלינית. חבר במכון המחקר והפיתוח של <em>השלישי המלאכותי</em>. עוסק בחיבור בין קליניקה, מחקר וטכנולוגיה. חתן פרס נשיא המדינה למצוינות מדעית וחדשנות (2025) וקצין אמ"ן במיל'. מעביר הרצאות וסדנאות באוניברסיטאות, בבתי חולים ובמכוני מחקר.
         </p>
       </div>
     </section>
@@ -841,7 +873,7 @@
     <!-- ============ VENUES (logo strip) ============ -->
     <section class="venues reveal">
       <ul class="logo-strip">
-        <li title="אוניברסיטת בר-אילן"><img src="logos/biu.svg" alt="אוניברסיטת בר-אילן" loading="lazy"></li>
+        <li title="אוניברסיטת בר-אילן"><img src="logos/biu-seal.svg" alt="אוניברסיטת בר-אילן" loading="lazy"></li>
         <li title="אוניברסיטת בן-גוריון בנגב"><img src="logos/bgu.svg" alt="אוניברסיטת בן-גוריון בנגב" loading="lazy"></li>
         <li title="University College London"><img src="logos/ucl.svg" alt="University College London" loading="lazy"></li>
         <li title="מועצת הפסיכולוגים הישראלית"><img src="logos/moh.png" alt="מועצת הפסיכולוגים הישראלית" loading="lazy"></li>
